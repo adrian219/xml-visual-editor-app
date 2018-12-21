@@ -19,17 +19,19 @@ export class XmlNode implements ITreeNode {
 
     id: number;
     name: string;
-    params: Map<string, string>
-    value: string;
+    paramKeys: string[];
+    paramValues: string[];
+    content: string;
 
-    constructor(id: number, name: string, params?: Map<string, string>, children?: ITreeNode[], value?: string) {
+    constructor(id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: ITreeNode[], content?: string) {
         this.id = id;
         this.name = name;
         this.children = children;
-        this.params = params;
-        this.value = value;
+        this.paramKeys = paramKeys;
+        this.paramValues = paramValaues;
+        this.content = content;
 
-        if (params != null || params != undefined) {
+        if (!this.checkIfParamsIsNullOrEmpty(paramKeys)) {
             this.displayField = this.getDisplayNode();
         } else {
             this.displayField = name;
@@ -37,12 +39,15 @@ export class XmlNode implements ITreeNode {
     }
 
     setParam(key: string, value: string) {
-        this.params.set(key, value);
+        this.paramKeys.push(key);
+        this.paramValues.push(key);
     }
 
     getParam(key: string) {
-        if (this.params.has(key)) {
-            return this.params.get(key);
+        let index: number = this.paramKeys.indexOf(key);
+
+        if (index != -1) {
+            return this.paramValues[index];
         } else {
             return null;
         }
@@ -54,50 +59,8 @@ export class XmlNode implements ITreeNode {
 
     removeChildren(node: ITreeNode) {
         if (this.children.includes(node)) {
-
+            //delete
         }
-    }
-
-    export() {
-        let a : string = "<";
-
-        a = a.concat(this.name);
-
-        if(this.params != null){
-            a = a.concat(" ")
-                
-            this.params.forEach((value, key) => {
-                a = a
-                    .concat(key)
-                    .concat("=")
-                    .concat("\"")
-                    .concat(value)
-                    .concat("\"")
-            });
-        }
-
-        a = a.concat(">")
-
-        if(this.value != null){
-            a = a.concat(this.value);
-        }else if(this.children != null){
-            a = a.concat(this.value)
-            this.children.forEach( (value : XmlNode) => {
-                a = a
-                    .concat("\n")
-                    .concat("\t")
-                    .concat(value.export())
-                    .concat("\n");
-            })
-        }
-        
-
-        a = a
-            .concat("</")
-            .concat(this.name)
-            .concat(">")
-
-        return a;
     }
 
     private getDisplayNode() {
@@ -105,13 +68,28 @@ export class XmlNode implements ITreeNode {
 
         result = result.concat(this.name, " [");
 
-        this.params.forEach((value, key) => {
-            result = result.concat(key, "=", value, ", ");
-        });
+        if (!this.checkIfParamsIsNullOrEmpty(this.paramKeys)) {
+            for (let i = 0; i < this.paramKeys.length; i++) {
+                result = result.concat(this.paramKeys[i], "=", this.paramValues[i], ", ");
+            }
+        }
 
         return result.substring(0, result.length - 2).concat("]");
     }
 
+    private checkIfParamsIsNullOrEmpty(keys: string[]): boolean {
+        let result: boolean = false;
+
+        if (keys == null || keys == undefined) {
+            result = true;
+        } else {
+            if (keys.length == 0) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
 
     /*Implements methods from library is not using*/
     findNextSibling(skipHidden: any): ITreeNode {

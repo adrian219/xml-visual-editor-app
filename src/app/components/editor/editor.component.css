@@ -1,0 +1,13 @@
+.main-editor {
+    display: flex;
+}
+
+.xml-editor-column {
+    width: 100%;
+    margin: 10px;
+}
+
+.xml-input-column {
+    width: 100%;
+    margin: 10px;
+}

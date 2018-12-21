@@ -1,0 +1,7 @@
+<div class="input-xml row">
+    <mat-form-field>
+        <textarea matInput class="input-xml-textarea" placeholder="Twój XML" [ngModel]="xml | xml" (ngModelChange)="xml=$event" (keydown.Tab)="onKey($event)"></textarea>
+        <mat-error *ngIf="invalidXml">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <button mat-flat-button color="primary" (click)="onClickImportButton()">Import</button>
+</div>
