@@ -5,7 +5,6 @@ import { ImporterService } from './../../../services/importer/importer.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { XmlNode } from 'src/app/models/xml-node';
 import { XmlNodeDTO } from 'src/app/models/xml-node-dto';
-import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-xml-input',
@@ -13,15 +12,12 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./xml-input.component.css']
 })
 export class XmlInputComponent implements OnInit {
-  @Input() xml: string;
-
-  invalidXml: boolean = true;
+  @Input() xml: string; 
 
   constructor(
     private importerService: ImporterService,
     private changeXmlNodesService: ChangeXmlNodesService,
-    private changeXmlStringService: ChangeXmlStringService,
-    private validationService: ValidationService
+    private changeXmlStringService: ChangeXmlStringService
   ) { }
 
   ngOnInit() {
@@ -48,11 +44,7 @@ export class XmlInputComponent implements OnInit {
       children.push(this.getXmlNode(node))
     });
 
-    let xxx: XmlNode = new XmlNode(importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
-
-    console.log(xxx);
-
-    return xxx;
+    return new XmlNode(importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
   }
 
   getErrorMessage() {

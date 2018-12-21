@@ -1,7 +1,7 @@
 
 export class ValidationDTO {
 
-    constructor(private _xml: string, private _validate: boolean) {
+    constructor(private _xml: string, private _validate?: boolean) {
 
     }
 

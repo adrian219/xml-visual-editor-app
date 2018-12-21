@@ -1,4 +1,4 @@
 <div>
     <h3 class="tree-title">Drzewo graficzne</h3>
-    <tree-root [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
+    <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
 </div>

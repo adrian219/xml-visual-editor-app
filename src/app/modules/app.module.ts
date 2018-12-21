@@ -1,3 +1,4 @@
+import { ValidationService } from './../services/validation/validation.service';
 import { ChangeXmlStringService } from './../events/change-xml-string/change-xml-string.service';
 import { ChangeXmlNodesService } from './../events/change-xml-nodes/change-xml-nodes.service';
 import { TreeModule } from 'angular-tree-component';
@@ -21,6 +22,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule } from '@angular/forms';
 import { XmlPipe } from '../pipes/xml-pipe';
+import { XmlSyntaxDirective } from '../directives/xml-syntax.directive';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { XmlPipe } from '../pipes/xml-pipe';
     XmlTreeComponent,
     XmlInputComponent,
     XmlPipe,
+    XmlSyntaxDirective,
   ],
   imports: [
     BrowserModule,
@@ -43,13 +46,13 @@ import { XmlPipe } from '../pipes/xml-pipe';
     BrowserAnimationsModule,
     FlexLayoutModule,
     TreeModule.forRoot(),
-    
   ],
   providers: [
     ImporterService, 
     ExporterService, 
     ChangeXmlNodesService, 
-    ChangeXmlStringService
+    ChangeXmlStringService,
+    ValidationService
   ],
   bootstrap: [AppComponent]
 })
