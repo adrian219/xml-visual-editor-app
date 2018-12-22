@@ -1,6 +1,9 @@
+import { IReactionDisposer } from 'mobx';
 import { ITreeNode } from "angular-tree-component/dist/defs/api";
+import { TreeModel } from 'angular-tree-component';
 
 export class XmlNode implements ITreeNode {
+    private handler: IReactionDisposer;
     parent: ITreeNode;
     displayField: string;
     data: any;
@@ -23,7 +26,10 @@ export class XmlNode implements ITreeNode {
     paramValues: string[];
     content: string;
 
-    constructor(id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: ITreeNode[], content?: string) {
+    treeModel: TreeModel;
+
+    constructor(treeModel: TreeModel, id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: ITreeNode[], content?: string) {
+        this.treeModel = treeModel;
         this.id = id;
         this.name = name;
         this.children = children;
@@ -119,14 +125,33 @@ export class XmlNode implements ITreeNode {
     getClass(): string {
         throw new Error("Method not implemented.");
     }
+    setIsExpanded(value) {
+        if (this.hasChildren) {
+          this.treeModel.setExpandedNode(this, value);
+        }
+    
+        return this;
+      };
     toggleExpanded() {
-        throw new Error("Method not implemented.");
-    }
+        this.setIsExpanded(!this.isExpanded);
+    
+        return this;
+      }
     expand() {
-        throw new Error("Method not implemented.");
+        if (!this.isExpanded) {
+            this.toggleExpanded();
+        }
+
+        console.log("jestemmm");
+        return this;
     }
+
     collapse() {
-        throw new Error("Method not implemented.");
+        if (this.isExpanded) {
+            this.toggleExpanded();
+        }console.log("jestemmm 222222");
+
+        return this;
     }
     ensureVisible() {
         throw new Error("Method not implemented.");
@@ -141,13 +166,13 @@ export class XmlNode implements ITreeNode {
         throw new Error("Method not implemented.");
     }
     hide() {
-        throw new Error("Method not implemented.");
+        this.setIsHidden(true);
     }
     show() {
-        throw new Error("Method not implemented.");
+        this.setIsHidden(false);
     }
-    setIsHidden(value: boolean) {
-        throw new Error("Method not implemented.");
+    setIsHidden(value) {
+        this.treeModel.setIsHidden(this, value);
     }
     scrollIntoView() {
         throw new Error("Method not implemented.");

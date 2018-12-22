@@ -30,21 +30,12 @@ export class XmlInputComponent implements OnInit {
 
   onClickImportButton() {
     this.importerService.getNodes(this.xml).subscribe(result => {
-      this.changeXmlNodesService.changeEvent.emit(this.getXmlNode(result.node));
+      this.changeXmlNodesService.changeEvent.emit(result.node);
     });
   }
 
   onKey($event) {
     event.preventDefault(); //disabled tab key
-  }
-
-  private getXmlNode(importNode: XmlNodeDTO): XmlNode {
-    let children: XmlNode[] = [];
-    importNode.children.forEach(node => {
-      children.push(this.getXmlNode(node))
-    });
-
-    return new XmlNode(importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
   }
 
   getErrorMessage() {

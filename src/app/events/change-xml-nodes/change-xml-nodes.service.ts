@@ -1,12 +1,12 @@
+import { XmlNodeDTO } from './../../models/xml-node-dto';
 import { Injectable, Output, EventEmitter } from '@angular/core';
-import { XmlNode } from 'src/app/models/xml-node';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChangeXmlNodesService {
 
-  @Output() changeEvent: EventEmitter<XmlNode> = new EventEmitter();
+  @Output() changeEvent: EventEmitter<XmlNodeDTO> = new EventEmitter();
 
   constructor() { }
 }

@@ -1,3 +1,10 @@
 .tree-title {
     color: rgba(0, 0, 0, 0.54);
 }
+
+.trash-button {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: #2196f3;
+}

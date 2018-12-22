@@ -1,4 +1,9 @@
 <div>
     <h3 class="tree-title">Drzewo graficzne</h3>
     <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
+    <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">
+        <button mat-mini-fab class="trash-button">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
 </div>
