@@ -1,5 +1,13 @@
+.xml-tree-header {
+    margin-top: 10px;
+    display: flex;
+}
+
 .tree-title {
     color: rgba(0, 0, 0, 0.54);
+    font-weight: bold;
+    padding-top: 9px;
+    margin-right: 10px;
 }
 
 .trash-button {
@@ -7,4 +15,9 @@
     bottom: 10px;
     left: 10px;
     background-color: #2196f3;
+}
+
+.action-button {
+    margin-left: 10px;
+    margin-right: 10px;
 }

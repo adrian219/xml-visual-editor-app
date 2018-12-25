@@ -1,0 +1,18 @@
+.param-row {
+    display: flex;
+}
+
+.param-label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.param-label-text {
+    margin: auto;
+    margin-left: 0px;
+}
+
+.input-form-field {
+    width: 100%;
+}

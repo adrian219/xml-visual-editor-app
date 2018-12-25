@@ -6,7 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { XmlInputComponent } from './../components/editor/xml-input/xml-input.component';
-import { XmlTreeComponent } from 'src/app/components/editor/xml-tree/xml-tree.component';
+import { XmlTreeComponent, EditDialog } from 'src/app/components/editor/xml-tree/xml-tree.component';
 import { EditorComponent } from 'src/app/components/editor/editor.component';
 import { LayoutComponent } from 'src/app/components/layout/layout.component';
 import { LoginComponent } from './../components/login/login.component';
@@ -34,6 +34,7 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax.directive';
     XmlInputComponent,
     XmlPipe,
     XmlSyntaxDirective,
+    EditDialog
   ],
   imports: [
     BrowserModule,
@@ -54,6 +55,7 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax.directive';
     ChangeXmlStringService,
     ValidationService
   ],
+  entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

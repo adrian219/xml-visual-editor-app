@@ -18,7 +18,7 @@ export class XmlNode implements ITreeNode {
     isLeaf: boolean;
     hasChildren: boolean;
     isRoot: boolean;
-    children: ITreeNode[];
+    children: XmlNode[];
 
     id: number;
     name: string;
@@ -28,7 +28,7 @@ export class XmlNode implements ITreeNode {
 
     treeModel: TreeModel;
 
-    constructor(treeModel: TreeModel, id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: ITreeNode[], content?: string) {
+    constructor(treeModel: TreeModel, id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: XmlNode[], content?: string) {
         this.treeModel = treeModel;
         this.id = id;
         this.name = name;
@@ -37,10 +37,16 @@ export class XmlNode implements ITreeNode {
         this.paramValues = paramValaues;
         this.content = content;
 
-        if (!this.checkIfParamsIsNullOrEmpty(paramKeys)) {
+        this.update();
+
+        // this.paramKeys.
+    }
+
+    update() {
+        if (!this.checkIfParamsIsNullOrEmpty(this.paramKeys)) {
             this.displayField = this.getDisplayNode();
         } else {
-            this.displayField = name;
+            this.displayField = this.name;
         }
     }
 
@@ -59,11 +65,11 @@ export class XmlNode implements ITreeNode {
         }
     }
 
-    putChildren(node: ITreeNode) {
+    putChildren(node: XmlNode) {
         this.children.push(node);
     }
 
-    removeChildren(node: ITreeNode) {
+    removeChildren(node: XmlNode) {
         if (this.children.includes(node)) {
             //delete
         }
