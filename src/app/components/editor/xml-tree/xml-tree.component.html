@@ -1,9 +1,6 @@
 <div>
     <div class="xml-tree-header">
             <div class="tree-title">Drzewo graficzne</div>
-            <button mat-flat-button color="primary" class="action-button" (click)="onClickAddButton()">Dodaj</button>
-            <button mat-flat-button color="primary" class="action-button" (click)="onClickModifyButton()">Edytuj</button>
-            <button mat-flat-button color="primary" class="action-button" (click)="onClickDeleteButton()">Usuń</button>
     </div>
     <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
     <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">

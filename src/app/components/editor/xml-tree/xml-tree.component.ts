@@ -61,6 +61,10 @@ export class XmlTreeComponent implements OnInit {
       mouse: {
         dblClick: (tree, node, $event) => {
           this.onEditNode(node);
+        },
+        contextMenu: (tree, node, $event) => {
+          
+          $event.preventDefault();
         }
       },
       keys: {
