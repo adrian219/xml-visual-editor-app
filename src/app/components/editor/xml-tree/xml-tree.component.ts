@@ -52,12 +52,7 @@ export class XmlTreeComponent implements OnInit {
   @ViewChild(TreeComponent)
   private tree: TreeComponent;
 
-  @Input() nodes = [
-    new XmlNode(null, 1, "Baatrarar", null, null, [new XmlNode(null, 3, "SubNode", null)]),
-    new XmlNode(null, 2, "Baatrarardddd", null, null, null),
-    new XmlNode(null, 5, "Baatrararaaaaaa", null),
-    new XmlNode(null, 6, "Baatrarar3333", null)
-  ];
+  @Input() nodes = [];
 
   options: ITreeOptions = {
     allowDrag: (node) => true,
