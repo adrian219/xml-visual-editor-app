@@ -49,10 +49,14 @@ export class EditDialog {
   styleUrls: ['./xml-tree.component.css']
 })
 export class XmlTreeComponent implements OnInit {
-  @ViewChild(TreeComponent)
+  @ViewChild('tree')
   private tree: TreeComponent;
 
-  @Input() nodes = [];
+  @ViewChild('tempTree')
+  private tempTree: TreeComponent;
+
+  nodes = [];
+  newNodes = [];
 
   @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
 
@@ -75,6 +79,18 @@ export class XmlTreeComponent implements OnInit {
       keys: {
         [KEYS.ENTER]: (tree, node, $event) => {
           node.expandAll();
+        }
+      }
+    },
+  };
+
+  tempOptions: ITreeOptions = {
+    allowDrag: (node) => true,
+    displayField: "displayField",
+    actionMapping: {
+      mouse: {
+        dblClick: (tree, node, $event) => {
+          this.onEditNode(node);
         }
       }
     },
@@ -115,7 +131,9 @@ export class XmlTreeComponent implements OnInit {
 
   onRemoveDrop($event) {
     this.removeNode($event.element, this.nodes);
+    this.removeNode($event.element, this.newNodes);
     this.tree.treeModel.update();
+    this.tempTree.treeModel.update();
   }
 
   removeNode(element: ITreeNode, where: ITreeNode[]) {
@@ -170,10 +188,22 @@ export class XmlTreeComponent implements OnInit {
   }
 
   onEditNode(node: XmlNode) {
+    let isEdit: boolean;
+    let data;
+    if (node == null) {
+      node = new XmlNode((Math.random() % 1000), null, [], [], [], null);
+      this.newNodes = [node];
+      data = { node: node };
+      isEdit = false;
+    } else {
+      data = { node: node.data };
+      isEdit = true;
+    }
+
     const dialogRef = this.dialog.open(EditDialog, {
       width: '550px',
       disableClose: true,
-      data: { node: node.data }
+      data: data
     });
 
     const subAdd = dialogRef.componentInstance.addParam.subscribe((data: any) => {
@@ -185,8 +215,13 @@ export class XmlTreeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      node.data = result;
-      this.updateNode(node, this.nodes);
+      if (isEdit) {
+        node.data = result;
+        this.updateNode(node, this.nodes);
+      } else {
+        node = result;
+        this.updateNode(node, this.newNodes);
+      }
     });
   }
 
@@ -207,12 +242,18 @@ export class XmlTreeComponent implements OnInit {
 
   onDelete() {
     this.removeNode(this.selectedNode, this.nodes);
+    this.removeNode(this.selectedNode, this.newNodes);
     this.tree.treeModel.update();
+    this.tempTree.treeModel.update();
   }
 
   onClone() {
     this.cloneNode(this.selectedNode, this.nodes);
     this.tree.treeModel.update();
-    console.log(this.nodes);
+  }
+
+  /*Add new node*/
+  addNode() {
+    this.onEditNode(null);
   }
 }

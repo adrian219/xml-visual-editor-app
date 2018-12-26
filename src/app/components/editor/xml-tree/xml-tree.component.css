@@ -6,8 +6,10 @@
 .tree-title {
     color: rgba(0, 0, 0, 0.54);
     font-weight: bold;
-    padding-top: 9px;
-    margin-right: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 .trash-button {
@@ -20,4 +22,22 @@
 .options-menu {
     left: 0px;
     bottom: 0px;
+}
+
+.new-node-button {
+    margin-left: 5px;
+    position: relative;
+    right: 0px;
+}
+
+.new-node-row {
+    display: flex;
+}
+
+.tip-text-new-node {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+    font-style: italic;
+    color: #2195f3a2;
 }
