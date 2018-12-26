@@ -112,7 +112,7 @@ export class XmlTreeComponent implements OnInit {
     });
 
     this.chooseExampleNodeService.changeEvent.subscribe((node: XmlNode) => {
-      this.newNodes = [node];
+      this.newNodes = [new XmlNode((Math.random() % 1000), "".concat(node.name), [].concat(node.paramKeys), [].concat(node.paramValues), this.cloneChildren(node), "".concat(node.content))];
     });
   }
 
@@ -125,10 +125,14 @@ export class XmlTreeComponent implements OnInit {
     return new XmlNode(importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
   }
 
-  onMoveNode($event) {
+  updateXml() {
     this.exportService.getXml(this.nodes[0]).subscribe(result => {
       this.changeXmlStringService.changeEvent.emit(result.xml);
     });
+  }
+
+  onMoveNode($event) {
+    this.updateXml();
   }
 
   allowDrop(element) {
@@ -140,6 +144,7 @@ export class XmlTreeComponent implements OnInit {
     this.removeNode($event.element, this.newNodes);
     this.tree.treeModel.update();
     this.tempTree.treeModel.update();
+    this.updateXml();
   }
 
   removeNode(element: ITreeNode, where: ITreeNode[]) {
@@ -224,9 +229,11 @@ export class XmlTreeComponent implements OnInit {
       if (isEdit) {
         node.data = result;
         this.updateNode(node, this.nodes);
+        this.updateXml();
       } else {
         node = result;
         this.updateNode(node, this.newNodes);
+        this.updateXml();
       }
     });
   }
@@ -251,11 +258,13 @@ export class XmlTreeComponent implements OnInit {
     this.removeNode(this.selectedNode, this.newNodes);
     this.tree.treeModel.update();
     this.tempTree.treeModel.update();
+    this.updateXml();
   }
 
   onClone() {
     this.cloneNode(this.selectedNode, this.nodes);
     this.tree.treeModel.update();
+    this.updateXml();
   }
 
   /*Add new node*/
