@@ -3,10 +3,10 @@ import { ChangeXmlStringService } from './../../../events/change-xml-string/chan
 import { ChangeXmlNodesService } from './../../../events/change-xml-nodes/change-xml-nodes.service';
 import { XmlNode } from '../../../models/xml-node';
 import { Component, OnInit, Input, ViewChild, Inject, EventEmitter, Output } from '@angular/core';
-import { ITreeOptions, TreeModel, TreeComponent, TREE_ACTIONS, KEYS } from 'angular-tree-component';
+import { ITreeOptions, TreeComponent, KEYS } from 'angular-tree-component';
 import { ExporterService } from 'src/app/services/exporter/exporter.service';
 import { ITreeNode } from 'angular-tree-component/dist/defs/api';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatMenuTrigger } from '@angular/material';
 
 export interface DialogData {
   node: XmlNode;
@@ -54,6 +54,10 @@ export class XmlTreeComponent implements OnInit {
 
   @Input() nodes = [];
 
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
+
+  selectedNode;
+
   options: ITreeOptions = {
     allowDrag: (node) => true,
     displayField: "displayField",
@@ -63,7 +67,8 @@ export class XmlTreeComponent implements OnInit {
           this.onEditNode(node);
         },
         contextMenu: (tree, node, $event) => {
-          
+          this.menuTrigger.openMenu();
+          this.selectedNode = node;
           $event.preventDefault();
         }
       },
@@ -95,7 +100,7 @@ export class XmlTreeComponent implements OnInit {
       children.push(this.getXmlNode(node))
     });
 
-    return new XmlNode(this.tree.treeModel, importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
+    return new XmlNode(importNode.id, importNode.name, importNode.paramKeys, importNode.paramValues, children, importNode.content);
   }
 
   onMoveNode($event) {
@@ -137,6 +142,33 @@ export class XmlTreeComponent implements OnInit {
     });
   }
 
+  cloneNode(element: ITreeNode, where: XmlNode[]) {
+    where.forEach((node) => {
+      if (node.id == element.id) {
+
+        let xmlNode: XmlNode = new XmlNode((Math.random() % 1000), "".concat(node.name), [].concat(node.paramKeys), [].concat(node.paramValues), this.cloneChildren(node), "".concat(node.content));
+
+        where.push(xmlNode); //add clone node to main tree
+      } else {
+        if (node.children != null && node.children != undefined) {
+          this.cloneNode(element, node.children);
+        }
+      }
+    });
+  }
+
+  cloneChildren(xmlNode: XmlNode): XmlNode[] {
+    let cloneChildren: XmlNode[] = [];
+    if (xmlNode.children != null && xmlNode.children != undefined) {
+      xmlNode.children.forEach(node => {
+        cloneChildren.push(new XmlNode((Math.random() % 1000), "".concat(node.name), [].concat(node.paramKeys), [].concat(node.paramValues), this.cloneChildren(node), "".concat(node.content)))
+      });
+      return cloneChildren;
+    } else {
+      return new Array<XmlNode>();
+    }
+  }
+
   onEditNode(node: XmlNode) {
     const dialogRef = this.dialog.open(EditDialog, {
       width: '550px',
@@ -166,5 +198,21 @@ export class XmlTreeComponent implements OnInit {
   deleteParam(node: XmlNode, index: number) {
     node.paramKeys.splice(index, 1);
     node.paramValues.splice(index, 1);
+  }
+
+  /*Menu options*/
+  onEdit() {
+    this.onEditNode(this.selectedNode);
+  }
+
+  onDelete() {
+    this.removeNode(this.selectedNode, this.nodes);
+    this.tree.treeModel.update();
+  }
+
+  onClone() {
+    this.cloneNode(this.selectedNode, this.nodes);
+    this.tree.treeModel.update();
+    console.log(this.nodes);
   }
 }

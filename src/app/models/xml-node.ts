@@ -1,6 +1,5 @@
 import { IReactionDisposer } from 'mobx';
 import { ITreeNode } from "angular-tree-component/dist/defs/api";
-import { TreeModel } from 'angular-tree-component';
 
 export class XmlNode implements ITreeNode {
     private handler: IReactionDisposer;
@@ -26,10 +25,7 @@ export class XmlNode implements ITreeNode {
     paramValues: string[];
     content: string;
 
-    treeModel: TreeModel;
-
-    constructor(treeModel: TreeModel, id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: XmlNode[], content?: string) {
-        this.treeModel = treeModel;
+    constructor(id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: XmlNode[], content?: string) {
         this.id = id;
         this.name = name;
         this.children = children;
@@ -132,12 +128,8 @@ export class XmlNode implements ITreeNode {
         throw new Error("Method not implemented.");
     }
     setIsExpanded(value) {
-        if (this.hasChildren) {
-          this.treeModel.setExpandedNode(this, value);
-        }
-    
-        return this;
-      };
+        throw new Error("Method not implemented.");
+    }
     toggleExpanded() {
         this.setIsExpanded(!this.isExpanded);
     
@@ -178,7 +170,7 @@ export class XmlNode implements ITreeNode {
         this.setIsHidden(false);
     }
     setIsHidden(value) {
-        this.treeModel.setIsHidden(this, value);
+        throw new Error("Method not implemented.");
     }
     scrollIntoView() {
         throw new Error("Method not implemented.");

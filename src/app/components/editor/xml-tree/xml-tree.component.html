@@ -1,6 +1,6 @@
 <div>
     <div class="xml-tree-header">
-            <div class="tree-title">Drzewo graficzne</div>
+        <div class="tree-title">Drzewo graficzne</div>
     </div>
     <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
     <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">
@@ -8,4 +8,20 @@
             <mat-icon>delete</mat-icon>
         </button>
     </div>
+
+    <mat-menu class="options-menu" #menu="matMenu">
+        <button (click)="onEdit()" mat-menu-item>
+            <mat-icon>edit</mat-icon>
+            <span>Edytuj</span>
+        </button>
+        <button (click)="onDelete()" mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Usun</span>
+        </button>
+        <button (click)="onClone()" mat-menu-item>
+            <mat-icon>share</mat-icon>
+            <span>Klonuj</span>
+        </button>
+    </mat-menu>
+    <div #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu"></div>
 </div>
