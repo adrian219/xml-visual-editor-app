@@ -25,17 +25,19 @@ export class XmlNode implements ITreeNode {
     paramValues: string[];
     content: string;
 
-    constructor(id: number, name: string, paramKeys?: string[], paramValaues?: string[], children?: XmlNode[], content?: string) {
-        this.id = id;
+    constructor(id: number, name: string, paramKeys?: string[], paramValues?: string[], children?: XmlNode[], content?: string) {
+        if (id == -1) {
+            this.id = Math.random() % 10000;
+        } else {
+            this.id = id;
+        }
         this.name = name;
         this.children = children;
         this.paramKeys = paramKeys;
-        this.paramValues = paramValaues;
+        this.paramValues = paramValues;
         this.content = content;
 
         this.update();
-
-        // this.paramKeys.
     }
 
     update() {
@@ -132,9 +134,9 @@ export class XmlNode implements ITreeNode {
     }
     toggleExpanded() {
         this.setIsExpanded(!this.isExpanded);
-    
+
         return this;
-      }
+    }
     expand() {
         if (!this.isExpanded) {
             this.toggleExpanded();
@@ -147,7 +149,7 @@ export class XmlNode implements ITreeNode {
     collapse() {
         if (this.isExpanded) {
             this.toggleExpanded();
-        }console.log("jestemmm 222222");
+        } console.log("jestemmm 222222");
 
         return this;
     }

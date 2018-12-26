@@ -1,3 +1,4 @@
+import { ChooseExampleNodeService } from './../../../events/choose-example-node/choose-example-node.service';
 import { XmlNodeDTO } from './../../../models/xml-node-dto';
 import { ChangeXmlStringService } from './../../../events/change-xml-string/change-xml-string.service';
 import { ChangeXmlNodesService } from './../../../events/change-xml-nodes/change-xml-nodes.service';
@@ -100,6 +101,7 @@ export class XmlTreeComponent implements OnInit {
     private exportService: ExporterService,
     private changeXmlNodesService: ChangeXmlNodesService,
     private changeXmlStringService: ChangeXmlStringService,
+    private chooseExampleNodeService: ChooseExampleNodeService,
     public dialog: MatDialog
   ) { }
 
@@ -107,6 +109,10 @@ export class XmlTreeComponent implements OnInit {
     this.changeXmlNodesService.changeEvent.subscribe((node: XmlNodeDTO) => {
       this.nodes.splice(0, this.nodes.length);
       this.nodes = [this.getXmlNode(node)];
+    });
+
+    this.chooseExampleNodeService.changeEvent.subscribe((node: XmlNode) => {
+      this.newNodes = [node];
     });
   }
 
