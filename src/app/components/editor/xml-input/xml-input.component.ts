@@ -28,9 +28,14 @@ export class XmlInputComponent implements OnInit {
   }
 
   onClickImportButton() {
-    this.importerService.getNodes(this.xml).subscribe(result => {
-      this.changeXmlNodesService.changeEvent.emit(result.node);
-    });
+    this.importerService.getNodes(this.xml).subscribe(data => {
+      this.changeXmlNodesService.changeEvent.emit(data.node);
+    },
+    error => {
+      this.toastService.showMessage('TOAST.ADDRESS.ERROR', 3000);
+      console.log(error);
+    }
+    );
   }
 
   onKey($event) {

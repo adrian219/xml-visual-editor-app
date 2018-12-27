@@ -1,7 +1,7 @@
 
 export class ValidationDTO {
 
-    constructor(private _xml: string, private _validate?: boolean) {
+    constructor(private _xml: string, private _validate?: boolean, private _errorMessage?: string) {
 
     }
 
@@ -11,5 +11,9 @@ export class ValidationDTO {
 
     get validate() {
         return this._validate;
+    }
+
+    get errorMessage() {
+        return this._errorMessage;
     }
 }

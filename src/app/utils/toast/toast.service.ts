@@ -10,12 +10,16 @@ export class ToastService {
   constructor(private snackBar: MatSnackBar,
     private i18nService: I18nService) { }
 
-  show(i18nCode: string, duration: number) {
+  showMessage(i18nCode: string, duration: number) {
     this.getString(i18nCode).subscribe(result => {
       this.snackBar.open(result, null, {
         duration: duration,
       });
     });
+  }
+
+  showError(error: string) {
+    this.snackBar.open(error, 'Close');
   }
 
   private getString(i18nCode: string) {
