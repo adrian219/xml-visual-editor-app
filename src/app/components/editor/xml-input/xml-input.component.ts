@@ -1,10 +1,8 @@
-import { ValidationService } from './../../../services/validation/validation.service';
+import { ToastService } from './../../../utils/toast/toast.service';
 import { ChangeXmlStringService } from './../../../events/change-xml-string/change-xml-string.service';
 import { ChangeXmlNodesService } from './../../../events/change-xml-nodes/change-xml-nodes.service';
 import { ImporterService } from './../../../services/importer/importer.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { XmlNode } from 'src/app/models/xml-node';
-import { XmlNodeDTO } from 'src/app/models/xml-node-dto';
 
 @Component({
   selector: 'app-xml-input',
@@ -17,7 +15,8 @@ export class XmlInputComponent implements OnInit {
   constructor(
     private importerService: ImporterService,
     private changeXmlNodesService: ChangeXmlNodesService,
-    private changeXmlStringService: ChangeXmlStringService
+    private changeXmlStringService: ChangeXmlStringService,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {

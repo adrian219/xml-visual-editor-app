@@ -1,0 +1,8 @@
+{
+    "TOAST": {
+      "ADDRESS": {
+        "SUCCESS": "Address hasn't been found!",
+        "ERROR": "Address has been found!"
+      }
+    }
+  }  

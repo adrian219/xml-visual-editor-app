@@ -11,11 +11,15 @@ import { EditorComponent } from 'src/app/components/editor/editor.component';
 import { LayoutComponent } from 'src/app/components/layout/layout.component';
 import { LoginComponent } from './../components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { ImporterService } from '../services/importer/importer.service';
 import { ExporterService } from '../services/exporter/exporter.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
+// import ngx-translate and the http loader
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 import { AppComponent } from '../components/app.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -48,6 +52,14 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax/xml-syntax.directiv
     BrowserAnimationsModule,
     FlexLayoutModule,
     TreeModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
+
   ],
   providers: [
     ImporterService, 
@@ -60,3 +72,8 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax/xml-syntax.directiv
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+// required for AOT compilation
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
