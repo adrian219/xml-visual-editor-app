@@ -1,3 +1,6 @@
+import { AuthGuard } from './../guards/auth.guard';
+import { ErrorInterceptor } from './../helpers/error.interceptor';
+import { JwtInterceptor } from './../helpers/jwt.interceptor';
 import { ValidationService } from './../services/validation/validation.service';
 import { ChangeXmlStringService } from './../events/change-xml-string/change-xml-string.service';
 import { ChangeXmlNodesService } from './../events/change-xml-nodes/change-xml-nodes.service';
@@ -11,7 +14,7 @@ import { EditorComponent } from 'src/app/components/editor/editor.component';
 import { LayoutComponent } from 'src/app/components/layout/layout.component';
 import { LoginComponent } from './../components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ImporterService } from '../services/importer/importer.service';
 import { ExporterService } from '../services/exporter/exporter.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -27,11 +30,16 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XmlPipe } from '../pipes/xml-pipe';
 import { XmlSyntaxDirective } from '../directives/xml-syntax/xml-syntax.directive';
+import { AuthenticationService } from '../services/authentication/authentication.service';
+import { UserService } from '../services/user/user.service';
+import { fakeBackendProvider } from '../helpers/fake-backend';
+import { RegisterComponent } from '../components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    RegisterComponent,
     LayoutComponent,
     EditorComponent,
     XmlTreeComponent,
@@ -66,7 +74,15 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax/xml-syntax.directiv
     ExporterService, 
     ChangeXmlNodesService, 
     ChangeXmlStringService,
-    ValidationService
+    ValidationService,
+    AuthGuard,
+    AuthenticationService,
+    UserService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+
+        // provider used to create fake backend
+        fakeBackendProvider
   ],
   entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]
