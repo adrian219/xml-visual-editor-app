@@ -22,9 +22,13 @@ export class XmlInputComponent implements OnInit {
   ngOnInit() {
     this.xml = '<pre><Parent babbba="jagaa"><children></children></Parent></pre>'; //default xml string
 
-    this.changeXmlStringService.changeEvent.subscribe(xml => {
-      this.xml = xml;
-    });
+    this.changeXmlStringService.changeEvent.subscribe(data => {
+      this.xml = data;
+    },
+    error => {
+      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+    }
+    );
   }
 
   onClickImportButton() {
@@ -32,8 +36,7 @@ export class XmlInputComponent implements OnInit {
       this.changeXmlNodesService.changeEvent.emit(data.node);
     },
     error => {
-      this.toastService.showMessage('TOAST.ADDRESS.ERROR', 3000);
-      console.log(error);
+      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
     }
     );
   }

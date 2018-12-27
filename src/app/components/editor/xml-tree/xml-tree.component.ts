@@ -1,3 +1,4 @@
+import { ToastService } from './../../../utils/toast/toast.service';
 import { ChooseExampleNodeService } from './../../../events/choose-example-node/choose-example-node.service';
 import { XmlNodeDTO } from './../../../models/xml-node-dto';
 import { ChangeXmlStringService } from './../../../events/change-xml-string/change-xml-string.service';
@@ -108,7 +109,8 @@ export class XmlTreeComponent implements OnInit {
     private changeXmlNodesService: ChangeXmlNodesService,
     private changeXmlStringService: ChangeXmlStringService,
     private chooseExampleNodeService: ChooseExampleNodeService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastService: ToastService,
   ) { }
 
   ngOnInit() {
@@ -132,19 +134,30 @@ export class XmlTreeComponent implements OnInit {
   }
 
   updateXml() {
-    this.exportService.getXml(this.nodes[0]).subscribe(result => {
-      this.changeXmlStringService.changeEvent.emit(result.xml);
-    });
+    this.exportService.getXml(this.nodes[0]).subscribe(data => {
+      this.changeXmlStringService.changeEvent.emit(data.xml);
+    },
+    error => {
+      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+    }
+    );
+  }
+
+  checkRoot() {
+    if(this.nodes.length != 1){
+      this.toastService.showMessage("Uważaj! Twoj Xml nie ma glownego korzenia!", 3000);
+    }
   }
 
   onMoveNode($event) {
+    this.checkRoot();
     this.updateXml();
   }
 
   allowDrop(element) {
     return true;
   }
-
+  
   onRemoveDrop($event) {
     this.removeNode($event.element, this.nodes);
     this.removeNode($event.element, this.newNodes);
@@ -270,6 +283,7 @@ export class XmlTreeComponent implements OnInit {
     this.cloneNode(this.selectedNode, this.nodes);
     this.tree.treeModel.update();
     this.updateXml();
+    this.checkRoot();
   }
 
   /*Add new node*/

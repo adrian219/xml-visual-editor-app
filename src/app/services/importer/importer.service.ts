@@ -1,6 +1,9 @@
+import { Observable } from 'rxjs';
 import { AbstractService } from './../abstract.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 import { ImportDTO } from 'src/app/models/import.model';
 
 @Injectable({
@@ -17,6 +20,10 @@ export class ImporterService extends AbstractService {
     return this.http.post<ImportDTO>(
       this.serviceUrl,
       xml
-    );
+    ).catch(this.errorHandling);
+  }
+
+  errorHandling(error: HttpErrorResponse) {
+    return Observable.throw(error);
   }
 }
