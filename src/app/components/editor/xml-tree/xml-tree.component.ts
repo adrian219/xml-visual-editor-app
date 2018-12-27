@@ -30,7 +30,9 @@ export interface DeleteParamData {
 export class EditDialog {
   constructor(
     public dialogRef: MatDialogRef<EditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { 
+      console.log(data.node);
+    }
 
   @Output() addParam = new EventEmitter<AddParamData>(true);
   @Output() deleteParam = new EventEmitter<DeleteParamData>(true);
@@ -41,6 +43,10 @@ export class EditDialog {
 
   delete(node: XmlNode, index: number) {
     this.deleteParam.emit({ node: node, index: index });
+  }
+
+  indexTracker(index: number, value: any) {
+    return index;
   }
 }
 
@@ -143,7 +149,6 @@ export class XmlTreeComponent implements OnInit {
     this.removeNode($event.element, this.nodes);
     this.removeNode($event.element, this.newNodes);
     this.tree.treeModel.update();
-    this.tempTree.treeModel.update();
     this.updateXml();
   }
 
@@ -239,8 +244,8 @@ export class XmlTreeComponent implements OnInit {
   }
 
   addParam(node: XmlNode) {
-    node.paramKeys.push("key");
-    node.paramValues.push("value");
+    node.paramKeys.push("");
+    node.paramValues.push("");
   }
 
   deleteParam(node: XmlNode, index: number) {

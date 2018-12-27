@@ -2,7 +2,7 @@ import { map } from 'rxjs/operators';
 import { AsyncValidator, AbstractControl, ValidationErrors, NG_ASYNC_VALIDATORS } from '@angular/forms';
 import { Directive } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ValidationService } from '../services/validation/validation.service';
+import { ValidationService } from 'src/app/services/validation/validation.service';
 
 @Directive({
   selector: '[syntaxXml]',

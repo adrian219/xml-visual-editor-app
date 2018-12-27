@@ -20,9 +20,9 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from '../components/app.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { XmlPipe } from '../pipes/xml-pipe';
-import { XmlSyntaxDirective } from '../directives/xml-syntax.directive';
+import { XmlSyntaxDirective } from '../directives/xml-syntax/xml-syntax.directive';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { XmlSyntaxDirective } from '../directives/xml-syntax.directive';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     ScrollingModule,
     DragDropModule,
