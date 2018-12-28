@@ -45,3 +45,13 @@
     height: 100%; 
     display: flex;
   }
+
+  .user-menu {
+    position: absolute;
+    right: 10px;
+    width: auto;
+  }
+
+  .user-menu-text {
+    font-weight: bold;
+  }

@@ -4,6 +4,21 @@
       <mat-icon>menu</mat-icon>
     </button>
     <h1 class="example-app-name">XML Visual Editor</h1>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item (click)="onShowMyXML()">
+        <mat-icon>folder_open</mat-icon>
+        <span>My XMLs</span>
+      </button>
+      <button mat-menu-item (click)="onLogout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+
+    <button class="user-menu" mat-icon-button [matMenuTriggerFor]="appMenu">
+      <span class="user-menu-text">{{firstname}} {{lastname}}</span>
+      <mat-icon>home</mat-icon>
+    </button>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
