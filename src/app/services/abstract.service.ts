@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export abstract class AbstractService {
-  baseServiceUrl = "http://127.0.0.1:8380/xml-visual-editor-service";
+  baseServiceUrl = "http://localhost:8380/xml-visual-editor-service";
 
   constructor(http: HttpClient) { 
 

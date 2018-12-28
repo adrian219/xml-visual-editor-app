@@ -82,7 +82,7 @@ import { RegisterComponent } from '../components/register/register.component';
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
-        fakeBackendProvider
+        // fakeBackendProvider
   ],
   entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]

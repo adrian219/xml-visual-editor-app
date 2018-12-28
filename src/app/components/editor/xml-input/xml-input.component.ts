@@ -26,7 +26,9 @@ export class XmlInputComponent implements OnInit {
       this.xml = data;
     },
     error => {
-      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+      if(error.statusText != null && error.statusText != undefined) {
+        this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+      }
     }
     );
   }
@@ -36,7 +38,9 @@ export class XmlInputComponent implements OnInit {
       this.changeXmlNodesService.changeEvent.emit(data.node);
     },
     error => {
-      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+      if(error.statusText != null && error.statusText != undefined) {
+        this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+      }
     }
     );
   }
