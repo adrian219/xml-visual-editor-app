@@ -1,0 +1,43 @@
+.xmls-page {
+    margin: 20px;
+}
+
+.xmls-header {
+    display: flex;
+}
+
+.xmls-list {
+    margin-top: 5px;
+    width: 100%;
+}
+
+.xmls-add-button {
+    position: absolute;
+    right: 10px;
+}
+
+.xmls-title {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 500; 
+}
+
+.xmls-filter-input {
+    width: 100%
+}
+
+.xmls-table {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.empty-list-title {
+    font-size: 15px;
+    font-style: italic;
+    margin-top: 20px
+}
+
+.delete-button-table-column {
+    width: 20px;
+}

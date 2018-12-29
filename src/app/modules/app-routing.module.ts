@@ -1,16 +1,23 @@
+import { AddOwnXmlComponent } from './../components/layout/own-xmls/add-own-xml/add-own-xml.component';
 import { AuthGuard } from './../guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from '../components/layout/layout.component';
 import { LoginComponent } from '../components/login/login.component';
 import { RegisterComponent } from '../components/register/register.component';
+import { EditorComponent } from '../components/editor/editor.component';
+import { OwnXmlsComponent } from '../components/layout/own-xmls/own-xmls.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '', component: LayoutComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'xmls', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: LayoutComponent , canActivate: [AuthGuard] },
+  {
+    path: '', component: LayoutComponent, canActivate: [AuthGuard], children: [
+      { path: 'xmls', component: OwnXmlsComponent },
+      { path: 'xmls/:id', component: EditorComponent }, 
+    ]
+  },
   { path: '**', redirectTo: '' }
 ];
 

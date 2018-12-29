@@ -1,8 +1,13 @@
+import { OwnXmlsService } from './../../../services/own-xmls/own-xmls.service';
+import { SaveXmlService } from './../../../events/save-xml/save-xml.service';
+import { LoadXmlService } from './../../../events/load-xml/load-xml.service';
 import { ToastService } from './../../../utils/toast/toast.service';
 import { ChangeXmlStringService } from './../../../events/change-xml-string/change-xml-string.service';
 import { ChangeXmlNodesService } from './../../../events/change-xml-nodes/change-xml-nodes.service';
 import { ImporterService } from './../../../services/importer/importer.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
+import { ExportOwnXml } from 'src/app/models/own-xml/export-own-xml.model';
 
 @Component({
   selector: 'app-xml-input',
@@ -17,6 +22,9 @@ export class XmlInputComponent implements OnInit {
     private changeXmlNodesService: ChangeXmlNodesService,
     private changeXmlStringService: ChangeXmlStringService,
     private toastService: ToastService,
+    private loadXmlService: LoadXmlService,
+    private saveXmlService: SaveXmlService,
+    private ownXmlsService: OwnXmlsService
   ) { }
 
   ngOnInit() {
@@ -31,6 +39,16 @@ export class XmlInputComponent implements OnInit {
       }
     }
     );
+
+    this.loadXmlService.event.subscribe(ownXml => {
+      this.xml = ownXml.xml;
+      this.onClickImportButton();
+    });
+
+    this.saveXmlService.event.subscribe(ownXml => {
+      ownXml.xml = this.xml;
+      this.ownXmlsService.saveXml(new ExportOwnXml(ownXml));
+    });
   }
 
   onClickImportButton() {
@@ -41,8 +59,7 @@ export class XmlInputComponent implements OnInit {
       if(error.statusText != null && error.statusText != undefined) {
         this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
       }
-    }
-    );
+    });
   }
 
   onKey($event) {

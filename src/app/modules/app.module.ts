@@ -1,3 +1,6 @@
+import { CancelAddXmlService } from './../events/cancel-add-xml/cancel-add-xml.service';
+import { AddOwnXmlComponent } from './../components/layout/own-xmls/add-own-xml/add-own-xml.component';
+import { OwnXmlsComponent } from './../components/layout/own-xmls/own-xmls.component';
 import { AuthGuard } from './../guards/auth.guard';
 import { ErrorInterceptor } from './../helpers/error.interceptor';
 import { JwtInterceptor } from './../helpers/jwt.interceptor';
@@ -34,6 +37,9 @@ import { AuthenticationService } from '../services/authentication/authentication
 import { UserService } from '../services/user/user.service';
 import { fakeBackendProvider } from '../helpers/fake-backend';
 import { RegisterComponent } from '../components/register/register.component';
+import { OwnXmlsService } from '../services/own-xmls/own-xmls.service';
+import { ReloadXmlListService } from '../events/reload-xml-list/reload-xml-list.service';
+import { SaveXmlService } from '../events/save-xml/save-xml.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +52,9 @@ import { RegisterComponent } from '../components/register/register.component';
     XmlInputComponent,
     XmlPipe,
     XmlSyntaxDirective,
-    EditDialog
+    EditDialog,
+    OwnXmlsComponent,
+    AddOwnXmlComponent
   ],
   imports: [
     BrowserModule,
@@ -79,10 +87,14 @@ import { RegisterComponent } from '../components/register/register.component';
     AuthenticationService,
     UserService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
         // provider used to create fake backend
         // fakeBackendProvider
+    OwnXmlsService,
+    CancelAddXmlService,
+    ReloadXmlListService,
+    SaveXmlService
   ],
   entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]

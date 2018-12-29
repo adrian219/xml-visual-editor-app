@@ -1,4 +1,9 @@
+import { SaveXmlService } from './../../events/save-xml/save-xml.service';
+import { LoadXmlService } from './../../events/load-xml/load-xml.service';
+import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { OwnXmlsService } from 'src/app/services/own-xmls/own-xmls.service';
 
 @Component({
   selector: 'app-editor',
@@ -6,10 +11,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  ownXml: OwnXml = new OwnXml();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute,
+    private ownXmlsService: OwnXmlsService,
+    private loadXmlService: LoadXmlService,
+    private saveXmlService: SaveXmlService) { }
 
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.ownXmlsService.getXml(id).subscribe(xml => {
+      this.ownXml = xml;
+      this.loadXmlService.event.emit(xml);
+    })
   }
 
+  onClickSaveButton() {
+    this.saveXmlService.event.emit(this.ownXml);
+  }
 }

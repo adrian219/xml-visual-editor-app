@@ -12,7 +12,7 @@ import { ImportDTO } from 'src/app/models/import.model';
 export class ImporterService extends AbstractService {
   private serviceUrl = this.baseServiceUrl + "/import";
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     super(http);
   }
 

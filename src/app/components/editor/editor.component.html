@@ -1,4 +1,8 @@
 <div class="main-editor column">
+  <div class="editor-header">
+      <div>Xml: {{ownXml.name}}</div>
+      <button mat-button (click)="onClickSaveButton()"><mat-icon>save</mat-icon></button>
+  </div>
   <app-xml-tree class="xml-editor-column"></app-xml-tree>
   <app-xml-input class="xml-input-column"></app-xml-input>
 </div>

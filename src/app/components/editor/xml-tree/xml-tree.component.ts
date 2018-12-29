@@ -110,7 +110,7 @@ export class XmlTreeComponent implements OnInit {
     private changeXmlStringService: ChangeXmlStringService,
     private chooseExampleNodeService: ChooseExampleNodeService,
     public dialog: MatDialog,
-    private toastService: ToastService,
+    private toastService: ToastService
   ) { }
 
   ngOnInit() {
