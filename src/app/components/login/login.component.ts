@@ -1,30 +1,60 @@
+import { User } from 'src/app/models/user/user.model';
 import { ToastService } from 'src/app/utils/toast/toast.service';
 import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { MatIconRegistry } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { LogIn } from 'src/app/models/user/log-in.model';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
+})
 export class LoginComponent implements OnInit {
-    loginForm: FormGroup;
+    model: LogIn = {username: '', password: ''};
+
     loading = false;
     submitted = false;
     returnUrl: string;
 
     constructor(
-        private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthenticationService,
-        private toastService: ToastService) {}
+        private toastService: ToastService,
+        private matIconRegistry: MatIconRegistry,
+        private domSanitizer: DomSanitizer ) { 
+            this.matIconRegistry.addSvgIcon(
+                'facebook',
+                this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/facebook.svg')
+            );
+
+            this.matIconRegistry.addSvgIcon(
+                'google',
+                this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/google.svg')
+            );
+
+            this.matIconRegistry.addSvgIcon(
+                'twitter',
+                this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/twitter.svg')
+            );
+
+            this.matIconRegistry.addSvgIcon(
+                'linkedin',
+                this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/linkedin.svg')
+            );
+
+            this.matIconRegistry.addSvgIcon(
+                'gitlab',
+                this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/gitlab.svg')
+            );
+        }
 
     ngOnInit() {
-        this.loginForm = this.formBuilder.group({
-            username: ['', Validators.required],
-            password: ['', Validators.required]
-        });
-
         // reset login status
         this.authenticationService.logout();
 
@@ -32,19 +62,16 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.loginForm.controls; }
-
-    onSubmit() {
+    onSubmit(loginForm:NgForm) {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.loginForm.invalid) {
+        if (loginForm.invalid) {
             return;
         }
 
         this.loading = true;
-        this.authenticationService.login(this.f.username.value, this.f.password.value)
+        this.authenticationService.login(this.model.username, this.model.password)
             .pipe(first())
             .subscribe(
                 data => {
@@ -54,5 +81,9 @@ export class LoginComponent implements OnInit {
                     this.toastService.showError(error);
                     this.loading = false;
                 });
+    }
+
+    onClickSocialMediaButton(socialMedia: string) {
+        console.log("selected media: " + socialMedia);
     }
 }

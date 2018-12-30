@@ -1,3 +1,4 @@
+import { SignUp } from 'src/app/models/user/sign-up.model';
 import { environment } from './../../../environments/environment.prod';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +16,7 @@ export class UserService {
         return this.http.get(`${environment.apiUrl}/users/` + id);
     }
 
-    register(user: User) {
+    register(user: SignUp) {
         return this.http.post(`${environment.apiUrl}/user/sign-up`, user);
     }
 

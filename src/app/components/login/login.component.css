@@ -1,12 +1,21 @@
+.login-background {
+    height: calc(100vh - 60px);
+    align-items: center;
+    display: flex;
+}
+
 .login-page {
-    margin: auto;
-    padding: 10px;
+    padding: 20px;
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 4px;
+    display: block;
+    width: 300px;
+    margin: auto;
 }
 
 .login-form {
     display: inline-grid;
+    width: 100%;
 }
 
 .submit-section {
@@ -14,7 +23,75 @@
 }
 
 .login-header {
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 500; 
     color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.login-form-field {
+    width: 100%;
+}
+
+.social-media-buttons {
+    margin-top: 5px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.social-media-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.facebook-button {
+    color: #3B5998;
+}
+
+.twitter-button {
+    color: #1DA1F2;
+}
+
+.google-button {
+    color: #4285F4;
+}
+
+.linkedin-button {
+    color: #0077B5;
+}
+
+.gitlab-button {
+    color: #E24329;
+}
+
+.register-section {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    display: block;
+}
+
+.register-text {
+    font-weight: 500; 
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    display: flex;
+}
+
+.register-link {
+    font-weight: bold; 
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: transparent;
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.loading-img {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }

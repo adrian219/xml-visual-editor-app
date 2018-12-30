@@ -1,22 +1,42 @@
-<div class="login-page">
-    <div class="login-header">Login</div>
-    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline">
-            <mat-label>Username</mat-label>
-            <input matInput #username="ngModel" [(ngModel)]="f.username" name="username" type="text" required />
-            <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Password</mat-label>
-            <input matInput #password="ngModel" [(ngModel)]="f.password" name="password" [type]="hide ? 'text' : 'password'"
-                required />
-            <mat-icon matSuffix class="visibility-button" (click)="hide = !hide">{{!hide ? 'visibility_off' :
-                'visibility'}}</mat-icon>
-            <mat-error *ngIf="password.errors?.required">Login nie moze byc pusty</mat-error>
-        </mat-form-field>
-        <button mat-flat-button [disabled]="loading" color="primary">Login</button>
-        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <a [routerLink]="['/register']" class="btn btn-link">Register</a>
-    </form>
+<div class="login-background">
+    <div class="login-page">
+        <div class="login-header">Login</div>
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <mat-form-field class="login-form-field" appearance="outline" hideRequiredMarker>
+                <mat-label>Username</mat-label>
+                <input matInput #username="ngModel" [(ngModel)]="model.username" name="username" type="text" required />
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-form-field" appearance="outline" hideRequiredMarker>
+                <mat-label>Password</mat-label>
+                <input matInput #password="ngModel" [(ngModel)]="model.password" name="password" [type]="hide ? 'text' : 'password'"
+                    required />
+                <mat-icon matSuffix class="visibility-button" (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="password.errors?.required">Login nie moze byc pusty</mat-error>
+            </mat-form-field>
+            <button mat-flat-button [disabled]="loading || loginForm.invalid" color="primary">Login</button>
+            <img class="loading-img" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        </form>
+        <div class="register-section">
+            <div class="register-text">You don't have account? <a class="register-link" [routerLink]="['/register']">Register</a> or sign up via</div>
+        </div>
+        <div class="social-media-buttons">
+            <button mat-icon-button class="social-media-button facebook-button" (click)="onClickSocialMediaButton('facebook')">
+                <mat-icon svgIcon="facebook"></mat-icon>
+            </button>
+            <button mat-icon-button class="social-media-button twitter-button" (click)="onClickSocialMediaButton('twitter')">
+                <mat-icon svgIcon="twitter"></mat-icon>
+            </button>
+            <button mat-icon-button class="social-media-button google-button" (click)="onClickSocialMediaButton('google')">
+                <mat-icon svgIcon="google"></mat-icon>
+            </button>
+            <button mat-icon-button class="social-media-button linkedin-button" (click)="onClickSocialMediaButton('linkedin')">
+                <mat-icon svgIcon="linkedin"></mat-icon>
+            </button>
+            <button mat-icon-button class="social-media-button gitlab-button" (click)="onClickSocialMediaButton('gitlab')">
+                <mat-icon svgIcon="gitlab"></mat-icon>
+            </button>
+        </div>
+    </div>
 </div>

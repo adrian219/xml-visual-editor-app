@@ -1,45 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
 import { ToastService } from 'src/app/utils/toast/toast.service';
+import { SignUp } from 'src/app/models/user/sign-up.model';
 
-@Component({templateUrl: 'register.component.html'})
+@Component({
+    selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
 export class RegisterComponent implements OnInit {
-    registerForm: FormGroup;
+    signUp: SignUp = {username: '', password: '', email: '', firstName: '', lastName: ''}
     loading = false;
     submitted = false;
 
     constructor(
-        private formBuilder: FormBuilder,
         private router: Router,
         private userService: UserService,
         private toastService: ToastService) { }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            email: ['', Validators.required, Validators.email],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
-        });
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
-
-    onSubmit() {
+    onSubmit(registerForm: NgForm) {
         this.submitted = true;
 
         // stop here if form is invalid
-        if (this.registerForm.invalid) {
+        if (registerForm.invalid) {
             return;
         }
 
         this.loading = true;
-        this.userService.register(this.registerForm.value)
+        this.userService.register(this.signUp)
             .pipe(first())
             .subscribe(
                 data => {
