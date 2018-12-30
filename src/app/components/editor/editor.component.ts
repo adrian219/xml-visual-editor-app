@@ -1,3 +1,4 @@
+import { ExporterService } from 'src/app/services/exporter/exporter.service';
 import { SaveXmlService } from './../../events/save-xml/save-xml.service';
 import { LoadXmlService } from './../../events/load-xml/load-xml.service';
 import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
@@ -16,7 +17,8 @@ export class EditorComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private ownXmlsService: OwnXmlsService,
     private loadXmlService: LoadXmlService,
-    private saveXmlService: SaveXmlService) { 
+    private saveXmlService: SaveXmlService,
+    private exporterService: ExporterService) { 
     }
 
   ngOnInit() {
@@ -30,5 +32,9 @@ export class EditorComponent implements OnInit {
 
   onClickSaveButton() {
     this.saveXmlService.event.emit(this.ownXml);
+  }
+
+  onClickExportButton() {
+    this.saveXmlService.eventWithDownload.emit(this.ownXml);
   }
 }

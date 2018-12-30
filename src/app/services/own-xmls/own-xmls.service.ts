@@ -49,6 +49,17 @@ export class OwnXmlsService extends AbstractService {
     });
   }
 
+  saveWithDownload(xml: ExportOwnXml) {
+    this.http.post<OwnXml>(
+      this.serviceUrl + "/" + xml.id,
+      xml
+    )
+    .catch(this.errorHandling)
+    .subscribe(result => {
+      window.open(this.baseServiceUrl + '/export/xml/' + xml.id, '_blank');
+    });
+  }
+
   deleteXml(id: number) {
     return this.http.delete<any>(
       this.serviceUrl + "/" + id,

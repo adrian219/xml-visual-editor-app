@@ -50,6 +50,13 @@ export class XmlInputComponent implements OnInit {
     });
 
     this.subscribes.push(sub);
+
+    sub = this.saveXmlService.eventWithDownload.subscribe(ownXml => {
+      ownXml.xml = this.xml;
+      this.ownXmlsService.saveWithDownload(new ExportOwnXml(ownXml));
+    });
+
+    this.subscribes.push(sub);
   }
 
   ngOnInit() {
