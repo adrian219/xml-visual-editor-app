@@ -1,8 +1,19 @@
-<div class="main-editor column">
+<div class="main-editor">
   <div class="editor-header">
-      <div>Xml: {{ownXml.name}}</div>
-      <button mat-button (click)="onClickSaveButton()"><mat-icon>save</mat-icon></button>
+    <div class="own-xml-buttons">
+        <button mat-stroked-button class="own-xml-button" (click)="onClickSaveButton()">
+            <mat-icon>save</mat-icon>
+            <span>Zapisz</span>
+          </button>
+          <button mat-stroked-button (click)="onClickExportButton()">
+            <mat-icon>file_copy</mat-icon>
+            <span>Zapisz do pliku</span>
+          </button>
+    </div>
+    <div class="editor-header-text">Xml: {{ownXml.name}}</div>
   </div>
-  <app-xml-tree class="xml-editor-column"></app-xml-tree>
-  <app-xml-input class="xml-input-column"></app-xml-input>
+  <div class="column">
+    <app-xml-tree class="xml-editor-column"></app-xml-tree>
+    <app-xml-input class="xml-input-column"></app-xml-input>
+  </div> 
 </div>

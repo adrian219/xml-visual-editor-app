@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { ChooseExampleNodeService } from './../../events/choose-example-node/choose-example-node.service';
 import { XmlNode } from 'src/app/models/xml-node';
@@ -46,9 +47,5 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   onLogout() {
     this.authenticationService.logout();
-  }
-
-  onShowMyXML() {
-    console.log("show dialog with my model");
   }
 }

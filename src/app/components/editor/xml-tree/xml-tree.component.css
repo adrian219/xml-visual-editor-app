@@ -1,6 +1,13 @@
-.xml-tree-header {
-    margin-top: 10px;
+.xml-tree-header-empty-tree {
+    margin-top: 22px;
     display: flex;
+    position: relative;
+}
+
+.xml-tree-header-full-tree {
+    margin-top: 13px;
+    display: flex;
+    position: relative; 
 }
 
 .tree-title {
@@ -14,8 +21,8 @@
 
 .trash-button {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 50px;
+    left: 25px;
     background-color: #2196f3;
 }
 
@@ -25,9 +32,9 @@
 }
 
 .new-node-button {
-    margin-left: 5px;
-    position: relative;
-    right: 0px;
+    position: absolute;
+    top: -12px;
+    right: 10px;
 }
 
 .new-node-row {
@@ -40,4 +47,8 @@
     margin-left: 15px;
     font-style: italic;
     color: #2195f3a2;
+}
+
+.space {
+    margin-bottom: 15px;
 }

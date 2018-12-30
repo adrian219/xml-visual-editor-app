@@ -16,7 +16,8 @@ export class EditorComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private ownXmlsService: OwnXmlsService,
     private loadXmlService: LoadXmlService,
-    private saveXmlService: SaveXmlService) { }
+    private saveXmlService: SaveXmlService) { 
+    }
 
   ngOnInit() {
     const id = +this.route.snapshot.paramMap.get('id');

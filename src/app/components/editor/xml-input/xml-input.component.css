@@ -1,8 +1,23 @@
 .input-xml {
     width: 100%;
     display: grid;
+    padding-top: 20px;
 }
 
 .input-xml-textarea {
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 310px);
+    font-family: monospace;
+    padding-top: 20px; 
+}
+
+.input-label {
+    color: rgba(0, 0, 0, 0.54);
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.invalid-xml-error-text {
+    margin-top: -10px;
+    margin-bottom: 5px;
 }

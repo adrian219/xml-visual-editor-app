@@ -1,5 +1,5 @@
 <div>
-    <div class="xml-tree-header">
+    <div [ngClass]="newNodes.length == 0 ? 'xml-tree-header-empty-tree' : 'xml-tree-header-full-tree'">
         <div class="tree-title">Drzewo graficzne</div>
         <div class="new-node-row" *ngIf="newNodes.length == 0">
             <button mat-button class="new-node-button" (click)="addNode()">
@@ -8,10 +8,10 @@
             </button>
         </div>
         <div class="new-node-row" *ngIf="newNodes.length != 0">
-            <div class="tip-text-new-node">Przenies element do drzewa:</div>
-            <tree-root #tempTree [ngClass]="'xml-tree'" [nodes]="newNodes" [options]="tempOptions"></tree-root>
+            <tree-root matTooltip="Przenies i umiesc element do drzewa" [matTooltipPosition]="'after'" #tempTree [ngClass]="'xml-tree'" [nodes]="newNodes" [options]="tempOptions"></tree-root>
         </div>
     </div>
+    <div class="space"></div>
     <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
     <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">
         <button mat-mini-fab class="trash-button">

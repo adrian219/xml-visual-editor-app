@@ -5,8 +5,8 @@
     </button>
     <h1 class="example-app-name">XML Visual Editor</h1>
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item (click)="onShowMyXML()">
-        <mat-icon>folder_open</mat-icon>
+      <button mat-menu-item [routerLink]="['/xmls']">
+        <mat-icon>folder_open</mat-icon> 
         <span>My own XMLs</span>
       </button>
       <button mat-menu-item (click)="onLogout()">

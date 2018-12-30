@@ -63,6 +63,8 @@ export class XmlTreeComponent implements OnInit {
   @ViewChild('tempTree')
   private tempTree: TreeComponent;
 
+  subscribes: any[] = [];
+
   nodes = [];
   newNodes = [];
 
@@ -111,16 +113,25 @@ export class XmlTreeComponent implements OnInit {
     private chooseExampleNodeService: ChooseExampleNodeService,
     public dialog: MatDialog,
     private toastService: ToastService
-  ) { }
-
-  ngOnInit() {
-    this.changeXmlNodesService.changeEvent.subscribe((node: XmlNodeDTO) => {
+  ) { 
+    let sub = this.changeXmlNodesService.changeEvent.subscribe((node: XmlNodeDTO) => {
       this.nodes.splice(0, this.nodes.length);
       this.nodes = [this.getXmlNode(node)];
     });
+    this.subscribes.push(sub);
 
-    this.chooseExampleNodeService.changeEvent.subscribe((node: XmlNode) => {
+    sub = this.chooseExampleNodeService.changeEvent.subscribe((node: XmlNode) => {
       this.newNodes = [new XmlNode((Math.random() % 1000), "".concat(node.name), [].concat(node.paramKeys), [].concat(node.paramValues), this.cloneChildren(node), "".concat(node.content))];
+    });
+    this.subscribes.push(sub);
+  }
+
+  ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscribes.forEach(element => {
+      element.unsubscribe();
     });
   }
 
@@ -275,7 +286,7 @@ export class XmlTreeComponent implements OnInit {
     this.removeNode(this.selectedNode, this.nodes);
     this.removeNode(this.selectedNode, this.newNodes);
     this.tree.treeModel.update();
-    this.tempTree.treeModel.update();
+    // this.tempTree.treeModel.update();
     this.updateXml();
   }
 

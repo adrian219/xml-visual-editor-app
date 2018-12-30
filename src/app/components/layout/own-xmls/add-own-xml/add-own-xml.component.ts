@@ -32,7 +32,6 @@ export class AddOwnXmlComponent implements OnInit {
   }
 
   onClickCreate(edit: boolean) {
-    console.log(this.ownXml);
     this.ownXmlsService.addXml(new ExportOwnXml(this.ownXml)).subscribe(result => {
       this.toastService.showMessage("Xml zostal utworzony!", 2000);
       if(edit) {

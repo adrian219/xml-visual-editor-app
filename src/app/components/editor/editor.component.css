@@ -1,19 +1,55 @@
 .main-editor {
-    display: flex;
+    margin: 10px;
 }
 
 .xml-editor-column {
     width: 100%;
-    margin: 10px;
+    padding: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    padding-top: 0px;
+    border-radius: 4px;
 }
 
 .xml-input-column {
     width: 100%;
-    margin: 10px;
+    padding: 20px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    padding-top: 0px;
+    border-radius: 4px;
 }
 
 .editor-header {
     display: flex;
     font-size: 17px;
     font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.editor-header-text {
+    margin-top: auto;
+    margin-bottom: auto;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.column {
+    display: flex; 
+}
+
+.own-xml-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.own-xml-buttons {
+    position: absolute;
+    right: 20px;
 }

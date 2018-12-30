@@ -14,6 +14,8 @@ import { MatTableDataSource } from '@angular/material';
 export class OwnXmlsComponent implements OnInit {
   xmls: OwnXml[] = [];
 
+  subscribes: any[] = [];
+
   newXmlActive: boolean;
 
   displayedColumns: string[] = ['name', 'lastUpdated', 'deleteButton'];
@@ -28,14 +30,23 @@ export class OwnXmlsComponent implements OnInit {
     private reloadXmlListService: ReloadXmlListService,
     private toastService: ToastService) {
     this.newXmlActive = false;
+
+    let sub = this.cancelAddXmlService.changeEvent.subscribe(result => this.newXmlActive = result);
+    this.subscribes.push(sub);
+    sub = this.reloadXmlListService.changeEvent.subscribe((xml) => {
+      this.newXmlActive = false;
+      this.reloadOneXml(xml);
+    });
+    this.subscribes.push(sub);
   }
 
   ngOnInit() {
     this.reloadXmls(); 
-    this.cancelAddXmlService.changeEvent.subscribe(result => this.newXmlActive = result);
-    this.reloadXmlListService.changeEvent.subscribe((xml) => {
-      this.newXmlActive = false;
-      this.reloadOneXml(xml);
+  }
+
+  ngOnDestroy() {
+    this.subscribes.forEach(element => {
+      element.unsubscribe();
     });
   }
 
@@ -58,7 +69,7 @@ export class OwnXmlsComponent implements OnInit {
   onClickDeleteButton(element: OwnXml) {
     console.log(element);
     this.ownXmlsService.deleteXml(element.id).subscribe(() => {
-      this.xmls.splice(this.xmls.findIndex(found => found.id == element.id))
+      this.xmls.splice(this.xmls.findIndex(found => found.id == element.id), 1);
       this.dataSource.data = this.xmls; 
       this.toastService.showMessage('Xml zostal usuniety!', 2000);
     });

@@ -17,6 +17,8 @@ import { ExportOwnXml } from 'src/app/models/own-xml/export-own-xml.model';
 export class XmlInputComponent implements OnInit {
   @Input() xml: string; 
 
+  subscribes: any[] = [];
+
   constructor(
     private importerService: ImporterService,
     private changeXmlNodesService: ChangeXmlNodesService,
@@ -25,11 +27,7 @@ export class XmlInputComponent implements OnInit {
     private loadXmlService: LoadXmlService,
     private saveXmlService: SaveXmlService,
     private ownXmlsService: OwnXmlsService
-  ) { }
-
-  ngOnInit() {
-    this.xml = '<pre><Parent babbba="jagaa"><children></children></Parent></pre>'; //default xml string
-
+  ) { 
     this.changeXmlStringService.changeEvent.subscribe(data => {
       this.xml = data;
     },
@@ -40,14 +38,28 @@ export class XmlInputComponent implements OnInit {
     }
     );
 
-    this.loadXmlService.event.subscribe(ownXml => {
+    let sub = this.loadXmlService.event.subscribe(ownXml => {
       this.xml = ownXml.xml;
       this.onClickImportButton();
     });
 
-    this.saveXmlService.event.subscribe(ownXml => {
+    this.subscribes.push(sub);
+
+    sub = this.saveXmlService.event.subscribe(ownXml => {
       ownXml.xml = this.xml;
       this.ownXmlsService.saveXml(new ExportOwnXml(ownXml));
+    });
+
+    this.subscribes.push(sub);
+  }
+
+  ngOnInit() {
+    this.xml = '';
+  }
+
+  ngOnDestroy() {
+    this.subscribes.forEach(element => {
+      element.unsubscribe();
     });
   }
 
