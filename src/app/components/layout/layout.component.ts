@@ -3,8 +3,9 @@ import { AuthenticationService } from './../../services/authentication/authentic
 import { ChooseExampleNodeService } from './../../events/choose-example-node/choose-example-node.service';
 import { XmlNode } from 'src/app/models/xml-node';
 import { ExampleNodes } from './../../models/example-nodes';
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-layout',
@@ -23,6 +24,8 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   private _mobileQueryListener: () => void;
 
+  @ViewChild(MatSidenav) snav: MatSidenav;
+
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
@@ -34,7 +37,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
     this.mobileQuery.addListener(this._mobileQueryListener);
 
     this.router = _router.url;
-  this.router.includes
   }
 
   ngOnDestroy(): void {

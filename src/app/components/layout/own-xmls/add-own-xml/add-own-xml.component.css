@@ -23,5 +23,7 @@
 }
 
 .cancel-xml-button {
-    background-color: #54c0ff;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    color:  rgba(0, 0, 0, 0.60);
 }
