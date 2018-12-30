@@ -3,7 +3,7 @@
         <div class="login-header">Login</div>
         <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-form-field class="login-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Username</mat-label>
+                <mat-label>Username or email</mat-label>
                 <input matInput #username="ngModel" [(ngModel)]="model.username" name="username" type="text" required />
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>

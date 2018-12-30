@@ -1,3 +1,5 @@
+import { UsernameTakenDirective } from './../directives/username-taken/username-taken.directive';
+import { CheckTakenService } from './../services/check-taken/check-taken.service';
 import { CancelAddXmlService } from './../events/cancel-add-xml/cancel-add-xml.service';
 import { AddOwnXmlComponent } from './../components/layout/own-xmls/add-own-xml/add-own-xml.component';
 import { OwnXmlsComponent } from './../components/layout/own-xmls/own-xmls.component';
@@ -40,6 +42,7 @@ import { RegisterComponent } from '../components/register/register.component';
 import { OwnXmlsService } from '../services/own-xmls/own-xmls.service';
 import { ReloadXmlListService } from '../events/reload-xml-list/reload-xml-list.service';
 import { SaveXmlService } from '../events/save-xml/save-xml.service';
+import { EmailTakenDirective } from '../directives/email-taken/email-taken.directive';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,9 @@ import { SaveXmlService } from '../events/save-xml/save-xml.service';
     XmlSyntaxDirective,
     EditDialog,
     OwnXmlsComponent,
-    AddOwnXmlComponent
+    AddOwnXmlComponent,
+    EmailTakenDirective,
+    UsernameTakenDirective
   ],
   imports: [
     BrowserModule,
@@ -94,7 +99,8 @@ import { SaveXmlService } from '../events/save-xml/save-xml.service';
     OwnXmlsService,
     CancelAddXmlService,
     ReloadXmlListService,
-    SaveXmlService
+    SaveXmlService,
+    CheckTakenService
   ],
   entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]

@@ -6,7 +6,6 @@ import { ChangeXmlStringService } from './../../../events/change-xml-string/chan
 import { ChangeXmlNodesService } from './../../../events/change-xml-nodes/change-xml-nodes.service';
 import { ImporterService } from './../../../services/importer/importer.service';
 import { Component, OnInit, Input } from '@angular/core';
-import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
 import { ExportOwnXml } from 'src/app/models/own-xml/export-own-xml.model';
 
 @Component({

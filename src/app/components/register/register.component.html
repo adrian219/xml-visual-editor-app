@@ -4,9 +4,10 @@
         <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
                 <mat-label>Username</mat-label>
-                <input matInput #username="ngModel" [(ngModel)]="signUp.username" name="username" type="text" required />
+                <input matInput #username="ngModel" [(ngModel)]="signUp.username" name="username" type="text" required checkUsernameIsTaken />
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>
+                <mat-error *ngIf="username.errors?.checkUsernameIsTaken">Login jest juz zajety</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
                 <mat-label>Password</mat-label>
@@ -19,10 +20,11 @@
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
                 <mat-label>Email</mat-label>
-                <input matInput #email="ngModel" [(ngModel)]="signUp.email" name="email" email required />
+                <input matInput #email="ngModel" [(ngModel)]="signUp.email" name="email" email required checkEmailIsTaken />
                 <mat-icon matSuffix>person</mat-icon>
                 <mat-error *ngIf="email.errors?.required">Email nie moze byc pusty</mat-error>
                 <mat-error *ngIf="email.errors?.email">Niewlasciwy format</mat-error>
+                <mat-error *ngIf="email.errors?.checkEmailIsTaken">Email jest juz zajety</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
                 <mat-label>First name</mat-label>
