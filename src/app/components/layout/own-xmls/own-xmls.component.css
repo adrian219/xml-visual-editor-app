@@ -13,7 +13,7 @@
 
 .xmls-add-button {
     position: absolute;
-    right: 10px;
+    right: 40px;
 }
 
 .xmls-title {
@@ -21,6 +21,7 @@
     margin-bottom: 0px;
     font-size: 20px;
     font-weight: 500; 
+    color: rgba(0, 0, 0, 0.6);
 }
 
 .xmls-filter-input {
@@ -40,4 +41,15 @@
 
 .delete-button-table-column {
     width: 20px;
+}
+
+.xmls-list-section {
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.xml-link-button {
+    padding-left: 5px;
+    text-align: left;
 }

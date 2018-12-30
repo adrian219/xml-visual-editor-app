@@ -12,7 +12,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit, OnDestroy {
-  title = "XmlVisualEditor"
+  router: string;
 
   exampleNodes = ExampleNodes.exampleNodes;
 
@@ -27,10 +27,14 @@ export class LayoutComponent implements OnInit, OnDestroy {
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
     private chooseExampleNodeService: ChooseExampleNodeService,
-    private authenticationService: AuthenticationService) {
+    private authenticationService: AuthenticationService,
+    private _router: Router) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
+
+    this.router = _router.url;
+  this.router.includes
   }
 
   ngOnDestroy(): void {
@@ -38,7 +42,6 @@ export class LayoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-
   }
 
   onChoose(node: XmlNode) {

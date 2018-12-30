@@ -1,0 +1,20 @@
+.login-page {
+    margin: auto;
+    padding: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+}
+
+.login-form {
+    display: inline-grid;
+}
+
+.submit-section {
+    width: 100%;
+}
+
+.login-header {
+    font-size: 20px;
+    font-weight: 500; 
+    color: rgba(0, 0, 0, 0.6);
+}

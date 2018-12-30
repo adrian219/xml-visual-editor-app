@@ -58,7 +58,7 @@ export class OwnXmlsComponent implements OnInit {
   }
 
   reloadOneXml(ownXml: OwnXml) {
-    this.xmls.push(ownXml);
+    this.xmls.unshift(ownXml);
     this.dataSource.data = this.xmls;
   }
 
