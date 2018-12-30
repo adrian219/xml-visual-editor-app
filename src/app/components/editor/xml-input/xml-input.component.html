@@ -1,8 +1,13 @@
 <div class="input-xml row">
     <mat-form-field>
         <mat-label class="input-label">Twój XML</mat-label>
-        <textarea matInput class="input-xml-textarea" syntaxXml #inputXml="ngModel" [ngModel]="xml | xml" (ngModelChange)="xml=$event" (keydown.Tab)="onKey($event)"></textarea>
-    </mat-form-field> 
+        <textarea matInput class="input-xml-textarea" syntaxXml #inputXml="ngModel" [ngModel]="xml | xml"
+            (ngModelChange)="xml=$event" (keydown.Tab)="onKey($event)"></textarea>
+    </mat-form-field>
     <mat-error class="invalid-xml-error-text" *ngIf="inputXml.invalid && (inputXml.dirty || inputXml.touched)">{{getErrorMessage()}}</mat-error>
-    <button mat-flat-button color="primary" (click)="onClickImportButton()">Import</button>
+    <div class="import-buttons">
+        <button mat-flat-button class="import-button" color="primary" (click)="onClickImportButton()">Import</button>
+        <button mat-button class="import-from-file-button" color="primary" (click)="imgFileInput.click()">Import z pliku</button>
+        <input hidden type="file" #imgFileInput (change)="previewImage($event)"/>
+    </div>
 </div>

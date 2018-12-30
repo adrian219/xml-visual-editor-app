@@ -21,3 +21,22 @@
     margin-top: -10px;
     margin-bottom: 5px;
 }
+
+.import-buttons {
+    display: flex;
+}
+
+.import-from-file-button {
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    color:  rgba(0, 0, 0, 0.90);
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 30%;
+}
+
+.import-button {
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 70%;
+}

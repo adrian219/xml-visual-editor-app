@@ -7,6 +7,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AbstractService } from '../abstract.service';
 import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
+import { saveAs } from 'file-saver';
 
 @Injectable({
   providedIn: 'root'
@@ -55,8 +56,10 @@ export class OwnXmlsService extends AbstractService {
       xml
     )
     .catch(this.errorHandling)
-    .subscribe(result => {
-      window.open(this.baseServiceUrl + '/export/xml/' + xml.id, '_blank');
+    .subscribe(() => {
+      this.http.get(this.baseServiceUrl + '/export/xml/' + xml.id, {responseType: 'blob'}).subscribe(result => {
+        saveAs(result, xml.name.replace(" ", "_").concat(".xml"))
+      }); 
     });
   }
 

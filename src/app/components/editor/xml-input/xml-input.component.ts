@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { OwnXmlsService } from './../../../services/own-xmls/own-xmls.service';
 import { SaveXmlService } from './../../../events/save-xml/save-xml.service';
 import { LoadXmlService } from './../../../events/load-xml/load-xml.service';
@@ -18,6 +19,8 @@ export class XmlInputComponent implements OnInit {
 
   subscribes: any[] = [];
 
+  selectedFile: File = null;
+
   constructor(
     private importerService: ImporterService,
     private changeXmlNodesService: ChangeXmlNodesService,
@@ -25,7 +28,8 @@ export class XmlInputComponent implements OnInit {
     private toastService: ToastService,
     private loadXmlService: LoadXmlService,
     private saveXmlService: SaveXmlService,
-    private ownXmlsService: OwnXmlsService
+    private ownXmlsService: OwnXmlsService,
+    private route: ActivatedRoute
   ) { 
     this.changeXmlStringService.changeEvent.subscribe(data => {
       this.xml = data;
@@ -77,6 +81,21 @@ export class XmlInputComponent implements OnInit {
       if(error.statusText != null && error.statusText != undefined) {
         this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
       }
+    });
+  }
+
+  /* Upload files */
+  previewImage(event) {
+    this.selectedFile = <File>event.target.files[0];
+    this.onUpload();
+  }
+
+  onUpload() {
+    const fd = new FormData();
+    fd.append('file', this.selectedFile, this.selectedFile.name);
+    this.importerService.importFile(+this.route.snapshot.paramMap.get('id'), fd).subscribe((result) => {
+      this.xml = result.xml;
+      this.changeXmlNodesService.changeEvent.emit(result.node);
     });
   }
 
