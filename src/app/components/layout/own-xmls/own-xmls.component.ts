@@ -2,9 +2,10 @@ import { ToastService } from './../../../utils/toast/toast.service';
 import { ReloadXmlListService } from './../../../events/reload-xml-list/reload-xml-list.service';
 import { CancelAddXmlService } from './../../../events/cancel-add-xml/cancel-add-xml.service';
 import { OwnXmlsService } from './../../../services/own-xmls/own-xmls.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OwnXml } from 'src/app/models/own-xml/own-xml.model';
 import { MatTableDataSource } from '@angular/material';
+import { I18nService } from 'src/app/utils/i18n/i18n.service';
 
 @Component({
   selector: 'app-own-xmls',
@@ -28,7 +29,8 @@ export class OwnXmlsComponent implements OnInit {
   constructor(private ownXmlsService: OwnXmlsService,
     private cancelAddXmlService: CancelAddXmlService,
     private reloadXmlListService: ReloadXmlListService,
-    private toastService: ToastService) {
+    private toastService: ToastService,
+    private i18n: I18nService) {
     this.newXmlActive = false;
 
     let sub = this.cancelAddXmlService.changeEvent.subscribe(result => this.newXmlActive = result);
@@ -71,7 +73,7 @@ export class OwnXmlsComponent implements OnInit {
     this.ownXmlsService.deleteXml(element.id).subscribe(() => {
       this.xmls.splice(this.xmls.findIndex(found => found.id == element.id), 1);
       this.dataSource.data = this.xmls; 
-      this.toastService.showMessage('Xml zostal usuniety!', 2000);
+      this.toastService.showMessage('OWN_XMLS.MESSAGES.DELETE', 2000);
     });
   }
 }

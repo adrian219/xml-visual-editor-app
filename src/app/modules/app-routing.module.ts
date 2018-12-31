@@ -1,4 +1,3 @@
-import { AddOwnXmlComponent } from './../components/layout/own-xmls/add-own-xml/add-own-xml.component';
 import { AuthGuard } from './../guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

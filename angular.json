@@ -24,7 +24,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/themes/style.scss"
+              "src/themes/style.scss",
+              "node_modules/flag-icon-css/css/flag-icon.css"
             ],
             "scripts": []
           },

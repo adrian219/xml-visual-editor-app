@@ -1,0 +1,3 @@
+<mat-select [(ngModel)]="defaultLanguage" class="language-select" (selectionChange)="onChangeLanguage($event.value)">
+    <mat-option [value]="language.value" *ngFor="let language of languages"><span class="flag-icon flag-icon-{{language.code}}"></span>{{language.viewValue | translate}}</mat-option>
+</mat-select>

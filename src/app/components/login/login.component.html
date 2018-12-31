@@ -1,25 +1,28 @@
 <div class="login-background">
     <div class="login-page">
-        <div class="login-header">Login</div>
+        <div class="change-language-field">
+            <app-change-language></app-change-language>
+        </div>
+        <div class="login-header">{{'LOGIN.TITLE' | translate}}</div>
         <form class="login-form" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
             <mat-form-field class="login-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Username or email</mat-label>
+                <mat-label>{{'LOGIN.USERNAME_OR_EMAIL.LABEL' | translate}}</mat-label>
                 <input matInput #username="ngModel" [(ngModel)]="model.username" name="username" type="text" required />
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>
+                <mat-error *ngIf="username.errors?.required">{{'LOGIN.USERNAME_OR_EMAIL.ERROR_REQUIRED' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="login-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Password</mat-label>
+                <mat-label>{{'LOGIN.PASSWORD.LABEL' | translate}}</mat-label>
                 <input matInput #password="ngModel" [(ngModel)]="model.password" name="password" [type]="hide ? 'text' : 'password'"
                     required />
                 <mat-icon matSuffix class="visibility-button" (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                <mat-error *ngIf="password.errors?.required">Login nie moze byc pusty</mat-error>
+                <mat-error *ngIf="password.errors?.required">{{'LOGIN.PASSWORD.ERROR_REQUIRED' | translate}}</mat-error>
             </mat-form-field>
-            <button mat-flat-button [disabled]="loading || loginForm.invalid" color="primary">Login</button>
+            <button mat-flat-button [disabled]="loading || loginForm.invalid" color="primary">{{'LOGIN.LOGIN_BUTTON' | translate}}</button>
             <img class="loading-img" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </form>
         <div class="register-section">
-            <div class="register-text">You don't have account? <a class="register-link" [routerLink]="['/register']">Register</a> or sign up via</div>
+            <div class="register-text">{{'LOGIN.REGISTER_TEXT' | translate}} <a class="register-link" [routerLink]="['/register']">{{'LOGIN.REGISTER_BUTTON' | translate}}</a> {{'LOGIN.REGISTER_VIA_SOCIAL_MEDIA_TEXT' | translate}}</div>
         </div>
         <div class="social-media-buttons">
             <button mat-icon-button class="social-media-button facebook-button" (click)="onClickSocialMediaButton('facebook')">

@@ -1,47 +1,52 @@
 <div class="register-background">
     <div class="register-page">
-        <div class="register-header">Register</div>
+        <div class="change-language-field">
+            <app-change-language></app-change-language>
+        </div>
+        <div class="register-header">{{'REGISTER.TITLE' | translate}}</div>
         <form class="register-form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Username</mat-label>
-                <input matInput #username="ngModel" [(ngModel)]="signUp.username" name="username" type="text" required checkUsernameIsTaken />
+                <mat-label>{{'REGISTER.USERNAME.LABEL' | translate}}</mat-label>
+                <input matInput #username="ngModel" [(ngModel)]="signUp.username" name="username" type="text" required
+                    checkUsernameIsTaken />
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="username.errors?.required">Login nie moze byc pusty</mat-error>
-                <mat-error *ngIf="username.errors?.checkUsernameIsTaken">Login jest juz zajety</mat-error>
+                <mat-error *ngIf="username.errors?.required">{{'REGISTER.USERNAME.ERROR_REQUIRED' | translate}}</mat-error>
+                <mat-error *ngIf="username.errors?.checkUsernameIsTaken">{{'REGISTER.USERNAME.ERROR_CHECK_TAKEN' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Password</mat-label>
+                <mat-label>{{'REGISTER.PASSWORD.LABEL' | translate}}</mat-label>
                 <input matInput #password="ngModel" [(ngModel)]="signUp.password" minlength="6" name="password" [type]="hide ? 'text' : 'password'"
                     required />
                 <mat-icon matSuffix class="visibility-button" (click)="hide = !hide">{{!hide ? 'visibility_off' :
                     'visibility'}}</mat-icon>
-                <mat-error *ngIf="password.errors?.required">Haslo nie moze byc puste</mat-error>
-                <mat-error *ngIf="password.errors?.minlength">Haslo musi posiadac minimum 6 znakow</mat-error>
+                <mat-error *ngIf="password.errors?.required">{{'REGISTER.PASSWORD.ERROR_REQUIRED' | translate}}</mat-error>
+                <mat-error *ngIf="password.errors?.minlength">{{'REGISTER.PASSWORD.ERROR_MINLENGTH' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Email</mat-label>
-                <input matInput #email="ngModel" [(ngModel)]="signUp.email" name="email" email required checkEmailIsTaken />
+                <mat-label>{{'REGISTER.EMAIL.LABEL' | translate}}</mat-label>
+                <input matInput #email="ngModel" [(ngModel)]="signUp.email" name="email" email required
+                    checkEmailIsTaken />
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="email.errors?.required">Email nie moze byc pusty</mat-error>
-                <mat-error *ngIf="email.errors?.email">Niewlasciwy format</mat-error>
-                <mat-error *ngIf="email.errors?.checkEmailIsTaken">Email jest juz zajety</mat-error>
+                <mat-error *ngIf="email.errors?.required">{{'REGISTER.EMAIL.ERROR_REQUIRED' | translate}}</mat-error>
+                <mat-error *ngIf="email.errors?.email">{{'REGISTER.EMAIL.ERROR_PATTERN' | translate}}</mat-error>
+                <mat-error *ngIf="email.errors?.checkEmailIsTaken">{{'REGISTER.EMAIL.ERROR_CHECK_TAKEN' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>First name</mat-label>
+                <mat-label>{{'REGISTER.FIRST_NAME.LABEL' | translate}}</mat-label>
                 <input matInput #firstName="ngModel" [(ngModel)]="signUp.firstName" name="firstName" type="text"
                     required />
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="firstName.errors?.required">Imie nie moze byc puste</mat-error>
+                <mat-error *ngIf="firstName.errors?.required">{{'REGISTER.FIRST_NAME.ERROR_REQUIRED' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-form-field" appearance="outline" hideRequiredMarker>
-                <mat-label>Last name</mat-label>
+                <mat-label>{{'REGISTER.LAST_NAME.LABEL' | translate}}</mat-label>
                 <input matInput #lastName="ngModel" [(ngModel)]="signUp.lastName" name="lastName" type="text" required />
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-error *ngIf="lastName.errors?.required">Nazwisko nie moze byc puste</mat-error>
+                <mat-error *ngIf="lastName.errors?.required">{{'REGISTER.LAST_NAME.ERROR_REQUIRED' | translate}}</mat-error>
             </mat-form-field>
-            <button mat-flat-button [disabled]="loading || registerForm.invalid" color="primary">Register</button>
+            <button mat-flat-button [disabled]="loading || registerForm.invalid" color="primary">{{'REGISTER.BUTTONS.REGISTER' | translate}}</button>
             <img class="loading-img" *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            <button mat-button [routerLink]="'/login'" class="back-button" color="primary">Back to login</button>
+            <button mat-button [routerLink]="'/login'" class="back-button" color="primary">{{'REGISTER.BUTTONS.BACK_TO_LOGIN' | translate}}</button>
         </form>
     </div>
 </div>

@@ -67,12 +67,6 @@ export class XmlNode implements ITreeNode {
         this.children.push(node);
     }
 
-    removeChildren(node: XmlNode) {
-        if (this.children.includes(node)) {
-            //delete
-        }
-    }
-
     private getDisplayNode() {
         let result: string = "";
 
@@ -142,14 +136,13 @@ export class XmlNode implements ITreeNode {
             this.toggleExpanded();
         }
 
-        console.log("jestemmm");
         return this;
     }
 
     collapse() {
         if (this.isExpanded) {
             this.toggleExpanded();
-        } console.log("jestemmm 222222");
+        }
 
         return this;
     }

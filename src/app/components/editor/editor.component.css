@@ -52,4 +52,18 @@
 .own-xml-buttons {
     position: absolute;
     right: 20px;
+} 
+
+@media only screen and (max-width: 888px) {
+    .column {
+        display: grid; 
+    }
+
+    .xml-editor-column {
+        width: auto;
+    }
+
+    .xml-input-column {
+        width: auto;
+    }
 }

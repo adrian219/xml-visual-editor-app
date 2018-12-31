@@ -1,9 +1,9 @@
-import { User } from 'src/app/models/user/user.model';
+import { I18nService } from './../../utils/i18n/i18n.service';
 import { ToastService } from 'src/app/utils/toast/toast.service';
 import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { MatIconRegistry } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService,
         private toastService: ToastService,
         private matIconRegistry: MatIconRegistry,
-        private domSanitizer: DomSanitizer ) { 
+        private domSanitizer: DomSanitizer,
+        private i18n: I18nService) { 
             this.matIconRegistry.addSvgIcon(
                 'facebook',
                 this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/facebook.svg')
@@ -78,7 +79,8 @@ export class LoginComponent implements OnInit {
                     this.router.navigate([this.returnUrl]);
                 },
                 error => {
-                    this.toastService.showError(error);
+                    let code: string = error;
+                    this.toastService.showErrorCode(code);
                     this.loading = false;
                 });
     }

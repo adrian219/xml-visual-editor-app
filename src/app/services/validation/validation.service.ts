@@ -1,3 +1,4 @@
+import { ValidationRequestDTO } from 'src/app/models/validation-request-dto/validation-request-dto.model';
 import { ValidationDTO } from './../../models/validation-dto';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';

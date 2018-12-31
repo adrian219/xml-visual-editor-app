@@ -1,6 +1,7 @@
+import { I18nService } from 'src/app/utils/i18n/i18n.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user/user.service';
 import { ToastService } from 'src/app/utils/toast/toast.service';
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
     constructor(
         private router: Router,
         private userService: UserService,
-        private toastService: ToastService) { }
+        private toastService: ToastService,
+        private i18n: I18nService) { }
 
     ngOnInit() {
     }
@@ -37,7 +39,7 @@ export class RegisterComponent implements OnInit {
             .pipe(first())
             .subscribe(
                 data => {
-                    this.toastService.showMessage('Registration successful', 3000);
+                    this.toastService.showMessage('REGISTER.MESSAGES.SUCCESSFULL', 3000);
                     this.router.navigate(['/login']);
                 },
                 error => {

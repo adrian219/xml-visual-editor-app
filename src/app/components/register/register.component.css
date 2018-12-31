@@ -6,7 +6,7 @@
 
 .register-page {
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.12);
+    border: 2px solid #2196f3;
     border-radius: 4px;
     display: block;
     width: 300px;
@@ -46,4 +46,10 @@
     border-radius: 4px;
     color: rgba(0, 0, 0, 0.6);
     margin-top: 5px;
+}
+
+.change-language-field {
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }

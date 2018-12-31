@@ -1,3 +1,4 @@
+import { I18nService } from 'src/app/utils/i18n/i18n.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication/authentication.service';
 import { ChooseExampleNodeService } from './../../events/choose-example-node/choose-example-node.service';
@@ -26,12 +27,15 @@ export class LayoutComponent implements OnInit, OnDestroy {
 
   @ViewChild(MatSidenav) snav: MatSidenav;
 
+  now = new Date();
+
   constructor(
     changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
     private chooseExampleNodeService: ChooseExampleNodeService,
     private authenticationService: AuthenticationService,
-    private _router: Router) {
+    private _router: Router,
+    private i18n: I18nService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);

@@ -1,6 +1,5 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root',

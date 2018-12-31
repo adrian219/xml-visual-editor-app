@@ -1,3 +1,4 @@
+import { ExportRequestDTO } from './../../models/export-request-dto/export-request-dto.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { AbstractService } from './../abstract.service';
 import { Injectable } from '@angular/core';
@@ -18,10 +19,11 @@ export class ExporterService extends AbstractService {
   }
 
   getXml(xmlNode: XmlNode) {
+    let exportRequest: ExportRequestDTO = {node: xmlNode};
     return this.http
       .post<ExportDTO>(
       this.serviceUrl,
-      xmlNode)
+      exportRequest)
       .catch(this.errorHandling);
   }
 

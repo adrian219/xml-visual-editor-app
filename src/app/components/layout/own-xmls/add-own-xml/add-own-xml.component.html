@@ -1,18 +1,18 @@
 <div class="add-xml-section">
     <div class="new-xml-title">
-        Nowy XML:
+        {{'ADD_OWN_XML.TITLE' | translate}}
     </div>
     <form #form="ngForm">
       <div>
-        <mat-form-field class="input-form-field">
-          <input #name="ngModel" matInput placeholder="Nazwa xml" required [(ngModel)]="ownXml.name" name="name">
-          <mat-error *ngIf="name.errors?.required">Nazwa xml nie moze byc pusta</mat-error>
+        <mat-form-field hideRequiredMarker class="input-form-field">
+          <input #name="ngModel" matInput placeholder="{{'ADD_OWN_XML.XML.LABEL' | translate}}" required [(ngModel)]="ownXml.name" name="name">
+          <mat-error *ngIf="name.errors?.required">{{'ADD_OWN_XML.XML.ERROR_REQUIRED' | translate}}</mat-error>
         </mat-form-field>
       </div>
     </form>
     <div>
-        <button mat-flat-button class="add-xml-button" color="primary" [disabled]="form.invalid" (click)="onClickCreate(false)">Create</button>
-        <button mat-flat-button class="add-xml-button" color="primary" [disabled]="form.invalid" (click)="onClickCreate(true)">Create and edit</button>
-        <button mat-flat-button class="add-xml-button cancel-xml-button" (click)="onClickCancel()">Cancel</button> 
+        <button mat-flat-button class="add-xml-button" color="primary" [disabled]="form.invalid" (click)="onClickCreate(false)">{{'ADD_OWN_XML.ACTIONS.CREATE' | translate}}</button>
+        <button mat-flat-button class="add-xml-button" color="primary" [disabled]="form.invalid" (click)="onClickCreate(true)">{{'ADD_OWN_XML.ACTIONS.CREATE_AND_EDIT' | translate}}</button>
+        <button mat-flat-button class="add-xml-button cancel-xml-button" (click)="onClickCancel()">{{'ADD_OWN_XML.ACTIONS.CANCEL' | translate}}</button> 
     </div>
 </div>

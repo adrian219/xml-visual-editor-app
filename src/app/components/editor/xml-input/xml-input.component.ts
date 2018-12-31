@@ -1,3 +1,4 @@
+import { I18nService } from './../../../utils/i18n/i18n.service';
 import { ActivatedRoute } from '@angular/router';
 import { OwnXmlsService } from './../../../services/own-xmls/own-xmls.service';
 import { SaveXmlService } from './../../../events/save-xml/save-xml.service';
@@ -29,14 +30,15 @@ export class XmlInputComponent implements OnInit {
     private loadXmlService: LoadXmlService,
     private saveXmlService: SaveXmlService,
     private ownXmlsService: OwnXmlsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private i18nService: I18nService
   ) { 
     this.changeXmlStringService.changeEvent.subscribe(data => {
       this.xml = data;
     },
     error => {
       if(error.statusText != null && error.statusText != undefined) {
-        this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+        this.toastService.showError(error.statusText);
       }
     }
     );
@@ -79,7 +81,7 @@ export class XmlInputComponent implements OnInit {
     },
     error => {
       if(error.statusText != null && error.statusText != undefined) {
-        this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+        this.toastService.showError(error.statusText);
       }
     });
   }
@@ -101,9 +103,5 @@ export class XmlInputComponent implements OnInit {
 
   onKey($event) {
     event.preventDefault(); //disabled tab key
-  }
-
-  getErrorMessage() {
-    return 'Znaleziono blad skladniowy!';
   }
 }

@@ -45,8 +45,8 @@ export class OwnXmlsService extends AbstractService {
       xml
     )
     .catch(this.errorHandling)
-    .subscribe(result => {
-      this.toastService.showMessage('ZAPISANE!', 2000);
+    .subscribe(() => {
+      this.toastService.showMessage('TOAST.SAVE', 2000);
     });
   }
 

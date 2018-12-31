@@ -1,3 +1,4 @@
+import { I18nService } from './../../../utils/i18n/i18n.service';
 import { ToastService } from './../../../utils/toast/toast.service';
 import { ChooseExampleNodeService } from './../../../events/choose-example-node/choose-example-node.service';
 import { XmlNodeDTO } from './../../../models/xml-node-dto';
@@ -31,7 +32,8 @@ export interface DeleteParamData {
 export class EditDialog {
   constructor(
     public dialogRef: MatDialogRef<EditDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { 
+    @Inject(MAT_DIALOG_DATA) public data: DialogData,
+    private i18nService: I18nService) { 
       console.log(data.node);
     }
 
@@ -112,7 +114,8 @@ export class XmlTreeComponent implements OnInit {
     private changeXmlStringService: ChangeXmlStringService,
     private chooseExampleNodeService: ChooseExampleNodeService,
     public dialog: MatDialog,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private i18n: I18nService
   ) { 
     let sub = this.changeXmlNodesService.changeEvent.subscribe((node: XmlNodeDTO) => {
       this.nodes.splice(0, this.nodes.length);
@@ -149,14 +152,16 @@ export class XmlTreeComponent implements OnInit {
       this.changeXmlStringService.changeEvent.emit(data.xml);
     },
     error => {
-      this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+      if(error.statusText != null && error.statusText != undefined) {
+        this.toastService.showErrorCode('CONNECTIONS.CHECK_INTERNET');
+      }
     }
     );
   }
 
   checkRoot() {
     if(this.nodes.length != 1){
-      this.toastService.showMessage("Uważaj! Twoj Xml nie ma glownego korzenia!", 3000);
+      this.toastService.showMessage('XML_TREE.MORE_THAN_ONE_ROOT_MESSAGE', 3000);
     }
   }
 

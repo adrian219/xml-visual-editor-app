@@ -20,9 +20,9 @@
 }
 
 .trash-button {
-    position: absolute;
-    bottom: 50px;
-    left: 25px;
+    position: fixed;
+    z-index: 300;
+    bottom: 80px;
     background-color: #2196f3;
 }
 
@@ -51,4 +51,8 @@
 
 .space {
     margin-bottom: 15px;
+}
+
+.relative {
+    position: relative;
 }

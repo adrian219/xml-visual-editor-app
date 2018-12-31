@@ -1,8 +1,163 @@
 {
-  "TOAST": {
-    "ADDRESS": {
-      "SUCCESS": "Adres zostal znaleziony!",
-      "ERROR": "Adres nie zostal znaleziony!"
+  "CONNECTIONS": {
+    "CHECK_INTERNET": ". Sprawdź polączenie z internetem."
+  },
+
+  "CHANGE_LANGUAGE": {
+    "LANGUAGES": {
+      "PL": "Polski",
+      "EN": "English"
     }
+  },
+
+  "XML_INPUT": {
+    "TITLE": "Twój XML",
+    "IMPORT": "Import",
+    "IMPORT_FROM_FILE": "Import z pliku",
+    "ERROR_SYNTAX": "Znaleziono blad skladniowy"
+  },
+
+  "EDIT_NODE": {
+    "NAME": {
+      "LABEL": "Nazwa tagu",
+      "ERROR_REQUIRED": "Nazwa tagu nie moze byc pusta",
+      "ERROR_PATTERN": "Nazwa tagu nie moze zawierac spacji"
+    },
+
+    "VALUE": {
+      "LABEL": "Wartosc pola"
+    },
+
+    "PARAMS": {
+      "BUTTON": "Nacisnij przycisk, aby dodac parametr",
+      "PARAM": "Parametry",
+      "KEY": {
+        "LABEL": "Klucz",
+        "ERROR_REQUIRED": "Klucz nie moze byc pusty",
+        "ERROR_PATTERN": "Nazwa klucza nie moze zawierac spacji"
+      },
+      "VALUE": {
+        "LABEL": "Wartosc"
+      }
+    },
+
+    "ACTIONS": {
+      "OK": "Ok"
+    }
+  },
+
+  "XML_TREE": {
+    "TITLE": "Drzewo graficzne",
+    "NEW_NODE": "Nowy znacznik",
+    "NEW_NODE_TOOLTIP": "Przenies i umiesc element do drzewa",
+    "OPTIONS": {
+      "EDIT": "Edytuj",
+      "DELETE": "Usun",
+      "CLONE": "Klonuj"
+    },
+    "MORE_THAN_ONE_ROOT_MESSAGE": "Uważaj! Twoj Xml nie ma glownego korzenia!"
+  },
+
+  "EDITOR": {
+    "SAVE_BUTTON": "Zapisz",
+    "SAVE_TO_FILE_BUTTON": "Zapisz do pliku"
+  },
+
+  "ADD_OWN_XML": {
+    "TITLE": "Nowy XML:",
+    "XML": {
+      "LABEL": "Nazwa xml",
+      "ERROR_REQUIRED": "Nazwa xml nie moze byc pusta"
+    },
+    "ACTIONS": {
+      "CREATE": "Dodaj",
+      "CREATE_AND_EDIT": "Dodaj i edytuj",
+      "CANCEL": "Anuluj"
+    },
+    "MESSAGES": {
+      "CREATE": "Xml zostal utworzony!"
+    }
+  },
+
+  "OWN_XMLS": {
+    "TITLE": "Twoje XML'e",
+    "ADD_XML_BUTTON": "Dodaj nowy XML",
+    "SEARCH": "Szukaj",
+    "COLUMNS": {
+      "NAME": "Nazwa",
+      "LAST_UPDATED": "Ostatnia aktualizacja"
+    },
+    "EMPTY_LIST": "Twoja lista jest pusta! :(",
+    "MESSAGES": {
+      "DELETE": "XML zostal usuniety!"
+    }
+  },
+
+  "LAYOUT": {
+    "TITLE": "Graficzny edytor XML",
+    "APP_MENU": {
+      "OWNS_XMLS": "Moje XML'e",
+      "LOGOUT": "Wyloguj"
+    },
+    "FOOTER": {
+      "CREATED_AND_DESIGNED": "Aplikacja stworzona i zaprojektowana przez "
+    }
+  },
+
+  "LOGIN": {
+    "TITLE": "Logowanie",
+    "USERNAME_OR_EMAIL": {
+      "LABEL": "Login lub email",
+      "ERROR_REQUIRED": "Login nie moze byc pusty"
+    },
+    "PASSWORD": {
+      "LABEL": "Haslo",
+      "ERROR_REQUIRED": "Haslo nie moze byc puste"
+    },
+    "LOGIN_BUTTON": "Zaloguj się",
+    "REGISTER_TEXT": "Nie masz konta? ",
+    "REGISTER_BUTTON": "Zarejestruj się",
+    "REGISTER_VIA_SOCIAL_MEDIA_TEXT": " lub zaloguj się przez",
+    "LOGIN_FAILED_MESSAGE": "Nieprawidlowy login/email lub haslo"
+  },
+
+  "REGISTER": {
+    "TITLE": "Rejestracja",
+    "USERNAME": {
+      "LABEL": "Login",
+      "ERROR_REQUIRED": "Login nie moze byc pusty",
+      "ERROR_CHECK_TAKEN": "Login jest juz zajety"
+    },
+    "PASSWORD": {
+      "LABEL": "Haslo",
+      "ERROR_REQUIRED": "Haslo nie moze byc puste",
+      "ERROR_MINLENGTH": "Haslo musi posiadac minimum 6 znakow"
+    },
+    "EMAIL": {
+      "LABEL": "Email",
+      "ERROR_REQUIRED": "Email nie moze byc pusty",
+      "ERROR_PATTERN": "Nieprawidlowy format",
+      "ERROR_CHECK_TAKEN": "Email jest juz zajety"
+    },
+    "FIRST_NAME": {
+      "LABEL": "Imię",
+      "ERROR_REQUIRED": "Imie nie moze byc puste"
+    },
+    "LAST_NAME": {
+      "LABEL": "Nazwisko",
+      "ERROR_REQUIRED": "Nazwisko nie moze byc puste"
+    },
+    "BUTTONS": {
+      "REGISTER": "Zarejestruj się",
+      "BACK_TO_LOGIN": "Wróć do logowania"
+    },
+    "MESSAGES": {
+      "SUCCESSFULL": "Rejestracja zakończona pomyslnie!"
+    }
+  },
+
+  "TOAST": {
+    "CLOSE": "Zamknij",
+    "SAVE": "Zapisano pomyslnie!"
   }
 }

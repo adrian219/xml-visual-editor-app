@@ -1,36 +1,38 @@
 <div>
     <div [ngClass]="newNodes.length == 0 ? 'xml-tree-header-empty-tree' : 'xml-tree-header-full-tree'">
-        <div class="tree-title">Drzewo graficzne</div>
+        <div class="tree-title">{{'XML_TREE.TITLE' | translate}}</div>
         <div class="new-node-row" *ngIf="newNodes.length == 0">
             <button mat-button class="new-node-button" (click)="addNode()">
                 <mat-icon>add</mat-icon>
-                <span>New node</span>
+                <span>{{'XML_TREE.NEW_NODE' | translate}}</span>
             </button>
         </div>
         <div class="new-node-row" *ngIf="newNodes.length != 0">
-            <tree-root matTooltip="Przenies i umiesc element do drzewa" [matTooltipPosition]="'after'" #tempTree [ngClass]="'xml-tree'" [nodes]="newNodes" [options]="tempOptions"></tree-root>
+            <tree-root matTooltip="{{'XML_TREE.NEW_NODE_TOOLTIP' | translate}}" [matTooltipPosition]="'after'" #tempTree [ngClass]="'xml-tree'" [nodes]="newNodes" [options]="tempOptions"></tree-root>
         </div>
     </div>
     <div class="space"></div>
-    <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
-    <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">
-        <button mat-mini-fab class="trash-button">
-            <mat-icon>delete</mat-icon>
-        </button>
+    <div class="relative">
+            <tree-root #tree [ngClass]="'xml-tree'" [nodes]="nodes" [options]="options" (moveNode)="onMoveNode($event)"></tree-root>
+            <div (treeDrop)="onRemoveDrop($event)" [treeAllowDrop]="allowDrop.bind(this)">
+                <button mat-mini-fab class="trash-button">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
     </div>
 
     <mat-menu class="options-menu" #menu="matMenu">
         <button (click)="onEdit()" mat-menu-item>
             <mat-icon>edit</mat-icon>
-            <span>Edytuj</span>
+            <span>{{'XML_TREE.OPTIONS.EDIT' | translate}}</span>
         </button>
         <button (click)="onDelete()" mat-menu-item>
             <mat-icon>delete</mat-icon>
-            <span>Usun</span>
+            <span>{{'XML_TREE.OPTIONS.DELETE' | translate}}</span>
         </button>
         <button (click)="onClone()" mat-menu-item>
             <mat-icon>share</mat-icon>
-            <span>Klonuj</span>
+            <span>{{'XML_TREE.OPTIONS.CLONE' | translate}}</span>
         </button>
     </mat-menu>
     <div #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu"></div>

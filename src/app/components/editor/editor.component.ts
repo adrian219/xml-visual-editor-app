@@ -1,3 +1,4 @@
+import { I18nService } from './../../utils/i18n/i18n.service';
 import { ExporterService } from 'src/app/services/exporter/exporter.service';
 import { SaveXmlService } from './../../events/save-xml/save-xml.service';
 import { LoadXmlService } from './../../events/load-xml/load-xml.service';
@@ -18,7 +19,8 @@ export class EditorComponent implements OnInit {
     private ownXmlsService: OwnXmlsService,
     private loadXmlService: LoadXmlService,
     private saveXmlService: SaveXmlService,
-    private exporterService: ExporterService) { 
+    private exporterService: ExporterService,
+    private i18n: I18nService) { 
     }
 
   ngOnInit() {

@@ -1,8 +1,163 @@
 {
-    "TOAST": {
-      "ADDRESS": {
-        "SUCCESS": "Address hasn't been found!",
-        "ERROR": "Address has been found!"
-      }
+  "CONNECTIONS": {
+    "CHECK_INTERNET": ". Check your Internet connection."
+  },
+
+  "CHANGE_LANGUAGE": {
+    "LANGUAGES": {
+      "PL": "Polski",
+      "EN": "English"
     }
-  }  
+  },
+
+  "XML_INPUT": {
+    "TITLE": "Your XML",
+    "IMPORT": "Import",
+    "IMPORT_FROM_FILE": "Import from file",
+    "ERROR_SYNTAX": "Found syntax error!"
+  },
+
+  "EDIT_NODE": {
+    "NAME": {
+      "LABEL": "Tag name",
+      "ERROR_REQUIRED": "Tag name is required",
+      "ERROR_PATTERN": "Spaces are forbidden"
+    },
+
+    "VALUE": {
+      "LABEL": "Content value"
+    },
+
+    "PARAMS": {
+      "BUTTON": "Press button to add param",
+      "PARAM": "Parameters",
+      "KEY": {
+        "LABEL": "Key",
+        "ERROR_REQUIRED": "Key is required",
+        "ERROR_PATTERN": "Spaces are forbidden"
+      },
+      "VALUE": {
+        "LABEL": "Value"
+      }
+    },
+
+    "ACTIONS": {
+      "OK": "Ok"
+    }
+  },
+
+  "XML_TREE": {
+    "TITLE": "Visual xml tree",
+    "NEW_NODE": "New node",
+    "NEW_NODE_TOOLTIP": "Move and drag to tree",
+    "OPTIONS": {
+      "EDIT": "Edit",
+      "DELETE": "Delete",
+      "CLONE": "Clone"
+    },
+    "MORE_THAN_ONE_ROOT_MESSAGE": "Warning! Your xml hasn't primary root!"
+  },
+
+  "EDITOR": {
+    "SAVE_BUTTON": "Save",
+    "SAVE_TO_FILE_BUTTON": "Save to file"
+  },
+
+  "ADD_OWN_XML": {
+    "TITLE": "New XML:",
+    "XML": {
+      "LABEL": "Name",
+      "ERROR_REQUIRED": "Name is required"
+    },
+    "ACTIONS": {
+      "CREATE": "Create",
+      "CREATE_AND_EDIT": "Create and edit",
+      "CANCEL": "Cancel"
+    },
+    "MESSAGES": {
+      "CREATE": "XML has been created!"
+    }
+  },
+
+  "OWN_XMLS": {
+    "TITLE": "Your XMLs",
+    "ADD_XML_BUTTON": "Add new XML",
+    "SEARCH": "Search",
+    "COLUMNS": {
+      "NAME": "Name",
+      "LAST_UPDATED": "Last updated"
+    },
+    "EMPTY_LIST": "Your list is empty! :(",
+    "MESSAGES": {
+      "DELETE": "XML has been deleted!"
+    }
+  },
+
+  "LAYOUT": {
+    "TITLE": "XML Visual Editor",
+    "APP_MENU": {
+      "OWNS_XMLS": "Your XMLs",
+      "LOGOUT": "Logout"
+    },
+    "FOOTER": {
+      "CREATED_AND_DESIGNED": "Application has been created and designed by "
+    }
+  },
+
+  "LOGIN": {
+    "TITLE": "Login",
+    "USERNAME_OR_EMAIL": {
+      "LABEL": "Username or email",
+      "ERROR_REQUIRED": "Username/email is required"
+    },
+    "PASSWORD": {
+      "LABEL": "Password",
+      "ERROR_REQUIRED": "Password is required"
+    },
+    "LOGIN_BUTTON": "Log in",
+    "REGISTER_TEXT": "Don't have account? ",
+    "REGISTER_BUTTON": "Register now",
+    "REGISTER_VIA_SOCIAL_MEDIA_TEXT": " or log in via",
+    "LOGIN_FAILED_MESSAGE": "Invalid email/username or password"
+  },
+
+  "REGISTER": {
+    "TITLE": "Registration",
+    "USERNAME": {
+      "LABEL": "Username",
+      "ERROR_REQUIRED": "Username is required",
+      "ERROR_CHECK_TAKEN": "Username was already taken"
+    },
+    "PASSWORD": {
+      "LABEL": "Password",
+      "ERROR_REQUIRED": "Password is required",
+      "ERROR_MINLENGTH": "Password has to minimum 6 characters"
+    },
+    "EMAIL": {
+      "LABEL": "Email",
+      "ERROR_REQUIRED": "Email is required",
+      "ERROR_PATTERN": "Invalid format",
+      "ERROR_CHECK_TAKEN": "Email was already taken"
+    },
+    "FIRST_NAME": {
+      "LABEL": "First name",
+      "ERROR_REQUIRED": "First name is required"
+    },
+    "LAST_NAME": {
+      "LABEL": "Last name",
+      "ERROR_REQUIRED": "Last name is required"
+    },
+    "BUTTONS": {
+      "REGISTER": "Register",
+      "BACK_TO_LOGIN": "Back to login"
+    },
+    "MESSAGES": {
+      "SUCCESSFULL": "Registration successfull!"
+    }
+  },
+
+  "TOAST": {
+    "CLOSE": "Close",
+    "SAVE": "Save successfull!"
+  }
+}

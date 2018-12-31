@@ -1,3 +1,4 @@
+import { I18nService } from './../../../../utils/i18n/i18n.service';
 import { ExportOwnXml } from './../../../../models/own-xml/export-own-xml.model';
 import { ReloadXmlListService } from './../../../../events/reload-xml-list/reload-xml-list.service';
 import { Router } from '@angular/router';
@@ -20,7 +21,8 @@ export class AddOwnXmlComponent implements OnInit {
     private reloadXmlListService: ReloadXmlListService,
     private ownXmlsService: OwnXmlsService,
     private toastService: ToastService,
-    private router: Router) { 
+    private router: Router,
+    private i18n: I18nService) { 
   }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class AddOwnXmlComponent implements OnInit {
 
   onClickCreate(edit: boolean) {
     this.ownXmlsService.addXml(new ExportOwnXml(this.ownXml)).subscribe(result => {
-      this.toastService.showMessage("Xml zostal utworzony!", 2000);
+      this.toastService.showMessage('ADD_OWN_XML.MESSAGES.CREATE', 2000);
       if(edit) {
         this.router.navigate(['/xmls/' + result.id]);
       } else {
@@ -42,7 +44,7 @@ export class AddOwnXmlComponent implements OnInit {
     },
     error => {
       if(error.statusText != null && error.statusText != undefined) {
-        this.toastService.showError(error.statusText.concat(". Check your Internet connection"));
+        this.toastService.showError(error.statusText.concat(this.i18n.getValue('CONNECTIONS.CHECK_INTERNET')));
       }    
     });
   }

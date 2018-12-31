@@ -1,30 +1,30 @@
 <div mat-dialog-content>
     <form #newNodeForm="ngForm">
         <div>
-            <mat-form-field class="input-form-field">
-                <input #name="ngModel" matInput placeholder="Nazwa tagu" pattern="[^\s]+" required [(ngModel)]="data.node.name" name="name">
-                <mat-error *ngIf="name.errors?.required">Nazwa tagu nie moze byc pusta</mat-error>
-                <mat-error *ngIf="name.errors?.pattern">Nazwa tagu nie moze zawierac spacji</mat-error>
+            <mat-form-field hideRequiredMarker class="input-form-field">
+                <input #name="ngModel" matInput placeholder="{{'EDIT_NODE.NAME.LABEL' | translate}}" pattern="[^\s]+" required [(ngModel)]="data.node.name" name="name">
+                <mat-error *ngIf="name.errors?.required">{{'EDIT_NODE.NAME.ERROR_REQUIRED' | translate}}</mat-error>
+                <mat-error *ngIf="name.errors?.pattern">{{'EDIT_NODE.NAME.ERROR_PATTERN' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="input-form-field">
-                <input matInput placeholder="Wartosc pola" [(ngModel)]="data.node.content" name="content">
+                <input matInput placeholder="{{'EDIT_NODE.VALUE.LABEL' | translate}}" [(ngModel)]="data.node.content" name="content">
             </mat-form-field>
         </div>
         <div class="param-label">
-            <div class="param-label-text" *ngIf="data.node.paramKeys.length == 0">Nacisnij przycisk, aby dodac parametr</div>
-            <div class="param-label-text" *ngIf="data.node.paramKeys.length != 0">Parametry:</div>
+            <div class="param-label-text" *ngIf="data.node.paramKeys.length == 0">{{'EDIT_NODE.PARAMS.BUTTON' | translate}}</div>
+            <div class="param-label-text" *ngIf="data.node.paramKeys.length != 0">{{'EDIT_NODE.PARAMS.PARAM' | translate}}</div>
             <button mat-button (click)="add(data.node)">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
         <div class="param-row" *ngFor="let item of data.node.paramKeys; let i = index; trackBy:indexTracker">
-            <mat-form-field class="input-form-field">
-                <input #param="ngModel" matInput placeholder="Klucz" pattern="[^\s]+" required [(ngModel)]="data.node.paramKeys[i]" name="paramKeys_{{i}}">
-                <mat-error *ngIf="param.errors?.required">Klucz nie moze byc pusty</mat-error>
-                <mat-error *ngIf="param.errors?.pattern">Nazwa klucza nie moze zawierac spacji</mat-error>
+            <mat-form-field hideRequiredMarker class="input-form-field">
+                <input #param="ngModel" matInput placeholder="{{'EDIT_NODE.PARAMS.KEY.LABEL' | translate}}" pattern="[^\s]+" required [(ngModel)]="data.node.paramKeys[i]" name="paramKeys_{{i}}">
+                <mat-error *ngIf="param.errors?.required">{{'EDIT_NODE.PARAMS.KEY.ERROR_REQUIRED' | translate}}</mat-error>
+                <mat-error *ngIf="param.errors?.pattern">{{'EDIT_NODE.PARAMS.KEY.ERROR_PATTERN' | translate}}</mat-error>
             </mat-form-field>
             <mat-form-field class="input-form-field">
-                <input matInput placeholder="Wartosc" [(ngModel)]="data.node.paramValues[i]" name="paramValues_{{i}}">
+                <input matInput placeholder="{{'EDIT_NODE.PARAMS.VALUE.LABEL' | translate}}" [(ngModel)]="data.node.paramValues[i]" name="paramValues_{{i}}">
             </mat-form-field>
             <button mat-button (click)="delete(data.node, i)">
                 <mat-icon>clear</mat-icon>
@@ -33,5 +33,5 @@
     </form>
 </div>
 <div mat-dialog-actions>
-    <button mat-flat-button color="primary" [disabled]="newNodeForm.invalid" [mat-dialog-close]="data.node">Ok</button>
+    <button mat-flat-button color="primary" [disabled]="newNodeForm.invalid" [mat-dialog-close]="data.node">{{'EDIT_NODE.ACTIONS.OK' | translate}}</button>
 </div>

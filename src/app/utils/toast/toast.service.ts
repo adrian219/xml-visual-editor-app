@@ -19,7 +19,17 @@ export class ToastService {
   }
 
   showError(error: string) {
-    this.snackBar.open(error, 'Close');
+    this.getString('TOAST.CLOSE').subscribe(result => {
+      this.snackBar.open(error, result);
+    }); 
+  }
+
+  showErrorCode(error: string) {
+    this.getString(error).subscribe(messsage => {
+      this.getString('TOAST.CLOSE').subscribe(result => {
+        this.snackBar.open(messsage, result);
+      });
+    });
   }
 
   private getString(i18nCode: string) {

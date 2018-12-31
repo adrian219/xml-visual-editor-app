@@ -1,3 +1,5 @@
+import { I18nService } from './../utils/i18n/i18n.service';
+import { ChangeLanguageComponent } from './../components/change-language/change-language.component';
 import { UsernameTakenDirective } from './../directives/username-taken/username-taken.directive';
 import { CheckTakenService } from './../services/check-taken/check-taken.service';
 import { CancelAddXmlService } from './../events/cancel-add-xml/cancel-add-xml.service';
@@ -59,7 +61,8 @@ import { EmailTakenDirective } from '../directives/email-taken/email-taken.direc
     OwnXmlsComponent,
     AddOwnXmlComponent,
     EmailTakenDirective,
-    UsernameTakenDirective
+    UsernameTakenDirective,
+    ChangeLanguageComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +103,8 @@ import { EmailTakenDirective } from '../directives/email-taken/email-taken.direc
     CancelAddXmlService,
     ReloadXmlListService,
     SaveXmlService,
-    CheckTakenService
+    CheckTakenService,
+    I18nService
   ],
   entryComponents: [XmlTreeComponent, EditDialog],
   bootstrap: [AppComponent]

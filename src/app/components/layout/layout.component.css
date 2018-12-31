@@ -48,7 +48,7 @@
 
   .user-menu {
     position: absolute;
-    right: 10px;
+    right: 0px;
     width: auto;
   }
 
@@ -57,3 +57,22 @@
     margin-left: 5px;
     margin-right: 5px;
   }
+
+  ::ng-deep .language-select {
+    border: none !important;
+    width: 100px !important;
+  }
+
+.example-toolbar {
+  height: 55px;
+}
+
+.footer-toolbar {
+  font-size: 14px;
+}
+
+@media only screen and (max-width: 550px) {
+  .user-menu-text {
+    display: none;
+  }
+}

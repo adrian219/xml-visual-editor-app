@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user/user.model';
 export class UserService {
     constructor(private http: HttpClient) { }
 
+    /* methods for fake providers */
     getAll() {
         return this.http.get<User[]>(`${environment.apiUrl}/users`);
     }

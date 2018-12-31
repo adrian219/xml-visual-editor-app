@@ -5,7 +5,7 @@
 }
 
 .input-xml-textarea {
-    min-height: calc(100vh - 310px);
+    min-height: calc(100vh - 320px);
     font-family: monospace;
     padding-top: 20px; 
 }
