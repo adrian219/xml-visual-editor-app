@@ -1,3 +1,5 @@
+import { UnauthorizedComponent } from './../components/error/unauthorized/unauthorized.component';
+import { AccessDeniedComponent } from './../components/error/access-denied/access-denied.component';
 import { AuthGuard } from './../guards/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +19,8 @@ const routes: Routes = [
       { path: 'xmls/:id', component: EditorComponent }, 
     ]
   },
+  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'access-denied', component: AccessDeniedComponent },
   { path: '**', redirectTo: '' }
 ];
 

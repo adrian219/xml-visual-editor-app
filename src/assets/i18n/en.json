@@ -156,6 +156,22 @@
     }
   },
 
+  "UNAUTHORIZED": {
+    "TITLE": "Unauthorized!",
+    "TEXT": "Log in and use page to build your own xml!",
+    "BUTTONS": {
+      "LOGIN": "Log in"
+    }
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Access denied!",
+    "TEXT": "You wanted to display a page that you do not have access to - create your XML and modify by my own way",
+    "BUTTONS": {
+      "BACK_TO_XMLS": "Take me to my xmls list"
+    }
+  },
+
   "TOAST": {
     "CLOSE": "Close",
     "SAVE": "Save successfull!"

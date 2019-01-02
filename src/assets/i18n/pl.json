@@ -156,6 +156,22 @@
     }
   },
 
+  "UNAUTHORIZED": {
+    "TITLE": "Jestes nieautoryzowany!",
+    "TEXT": "Zaloguj się na stronie, by móc korzystać ze wszystkich funkcjonalnosci!",
+    "BUTTONS": {
+      "LOGIN": "Zaloguj się"
+    }
+  },
+
+  "ACCESS_DENIED": {
+    "TITLE": "Wstęp wzbroniony!",
+    "TEXT": "Chcesz wyswietlić tresc, do której nie masz dostępu - utworz wlasny XML i modyfikuj go po swojemu!",
+    "BUTTONS": {
+      "BACK_TO_XMLS": "Przenies mnie do listy moich XML"
+    }
+  },
+
   "TOAST": {
     "CLOSE": "Zamknij",
     "SAVE": "Zapisano pomyslnie!"

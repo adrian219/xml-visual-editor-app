@@ -1,0 +1,10 @@
+<div class="unauthorized-background">
+    <div class="unauthorized-page">
+        <div class="change-language-field">
+            <app-change-language></app-change-language>
+        </div>
+        <div class="unauthorized-header">{{'UNAUTHORIZED.TITLE' | translate}}</div>
+        <div class="unauthorized-text">{{'UNAUTHORIZED.TEXT' | translate}}</div>
+        <button mat-flat-button [routerLink]="'/login'" class="login-button" color="primary">{{'UNAUTHORIZED.BUTTONS.LOGIN' | translate}}</button>
+    </div>
+</div>

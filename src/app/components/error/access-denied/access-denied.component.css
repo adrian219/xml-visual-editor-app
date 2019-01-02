@@ -1,0 +1,41 @@
+.access-denied-background {
+    height: calc(100vh - 60px);
+    align-items: center;
+    display: flex;
+}
+
+.access-denied-page {
+    padding: 20px;
+    border: 2px solid #2196f3;
+    border-radius: 4px;
+    display: block;
+    margin: auto;
+}
+
+.change-language-field {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.access-denied-header {
+    font-size: 30px;
+    font-weight: bold; 
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.access-denied-text {
+    font-size: 20px;
+    font-weight: 500; 
+    color: rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+.back-to-xmls-button {
+    border-radius: 4px;
+    margin-top: 30px;
+    width: 100%;
+}

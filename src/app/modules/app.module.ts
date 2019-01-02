@@ -1,3 +1,5 @@
+import { UnauthorizedComponent } from './../components/error/unauthorized/unauthorized.component';
+import { AccessDeniedComponent } from './../components/error/access-denied/access-denied.component';
 import { I18nService } from './../utils/i18n/i18n.service';
 import { ChangeLanguageComponent } from './../components/change-language/change-language.component';
 import { UsernameTakenDirective } from './../directives/username-taken/username-taken.directive';
@@ -62,7 +64,9 @@ import { EmailTakenDirective } from '../directives/email-taken/email-taken.direc
     AddOwnXmlComponent,
     EmailTakenDirective,
     UsernameTakenDirective,
-    ChangeLanguageComponent
+    ChangeLanguageComponent,
+    UnauthorizedComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
