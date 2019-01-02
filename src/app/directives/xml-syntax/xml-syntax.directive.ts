@@ -17,7 +17,7 @@ export class XmlSyntaxDirective implements AsyncValidator {
     ) { }
 
   validate(c: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
-    return this.validationService.validate(c.value).pipe(
+    return this.validationService.validate({xml: c.value}).pipe(
       map(result => {
         if(!result.validate) {
           this.toastService.showError(result.errorMessage);

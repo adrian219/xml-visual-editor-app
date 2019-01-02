@@ -6,6 +6,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { ImportDTO } from 'src/app/models/import.model';
 import { ImportFileDTO } from 'src/app/models/import-file-dto.model.ts/import-file-dto.model';
+import { ImportRequestDTO } from 'src/app/models/import-request-dto/import-request-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +18,10 @@ export class ImporterService extends AbstractService {
     super(http);
   }
 
-  getNodes(xml: string) {
+  getNodes(dto: ImportRequestDTO) {
     return this.http.post<ImportDTO>(
       this.serviceUrl,
-      xml
+      dto
     ).catch(this.errorHandling);
   }
 

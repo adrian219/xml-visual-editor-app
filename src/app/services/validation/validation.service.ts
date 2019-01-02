@@ -14,7 +14,7 @@ export class ValidationService extends AbstractService {
     super(http);
   }
 
-  validate(dto: ValidationDTO) {
+  validate(dto: ValidationRequestDTO) {
     return this.http.post<ValidationDTO>(
       this.serviceUrl,
       dto

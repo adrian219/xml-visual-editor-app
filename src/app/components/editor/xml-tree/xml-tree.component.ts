@@ -148,15 +148,19 @@ export class XmlTreeComponent implements OnInit {
   }
 
   updateXml() {
-    this.exportService.getXml(this.nodes[0]).subscribe(data => {
-      this.changeXmlStringService.changeEvent.emit(data.xml);
-    },
-    error => {
-      if(error.statusText != null && error.statusText != undefined) {
-        this.toastService.showErrorCode('CONNECTIONS.CHECK_INTERNET');
+    if(this.nodes[0] == null || this.nodes[0] == undefined) {
+      this.changeXmlStringService.changeEvent.emit("");
+    } else {
+      this.exportService.getXml(this.nodes[0]).subscribe(data => {
+        this.changeXmlStringService.changeEvent.emit(data.xml);
+      },
+      error => {
+        if(error.statusText != null && error.statusText != undefined) {
+          this.toastService.showErrorCode('CONNECTIONS.CHECK_INTERNET');
+        }
       }
+      );
     }
-    );
   }
 
   checkRoot() {

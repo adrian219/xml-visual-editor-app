@@ -76,14 +76,18 @@ export class XmlInputComponent implements OnInit {
   }
 
   onClickImportButton() {
-    this.importerService.getNodes(this.xml).subscribe(data => {
-      this.changeXmlNodesService.changeEvent.emit(data.node);
-    },
-    error => {
-      if(error.statusText != null && error.statusText != undefined) {
-        this.toastService.showError(error.statusText);
-      }
-    });
+    if(this.xml != null && this.xml != undefined && this.xml.length != 0) {
+      this.importerService.getNodes({xml: this.xml}).subscribe(data => {
+        this.changeXmlNodesService.changeEvent.emit(data.node);
+      },
+      error => {
+        if(error.statusText != null && error.statusText != undefined) {
+          this.toastService.showError(error.statusText);
+        }
+      });
+    } else {
+      this.changeXmlNodesService.changeEvent.emit(null);
+    }
   }
 
   /* Upload files */
