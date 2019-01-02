@@ -106,6 +106,6 @@ export class XmlInputComponent implements OnInit {
   }
 
   onKey($event) {
-    event.preventDefault(); //disabled tab key
+    // event.preventDefault(); //disabled tab key
   }
 }

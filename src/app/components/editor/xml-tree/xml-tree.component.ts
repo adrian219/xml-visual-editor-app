@@ -119,7 +119,12 @@ export class XmlTreeComponent implements OnInit {
   ) { 
     let sub = this.changeXmlNodesService.changeEvent.subscribe((node: XmlNodeDTO) => {
       this.nodes.splice(0, this.nodes.length);
-      this.nodes = [this.getXmlNode(node)];
+      if(node != null) {
+        this.nodes = [this.getXmlNode(node)]; 
+      } else {
+        this.nodes = [];
+      }
+      
     });
     this.subscribes.push(sub);
 
